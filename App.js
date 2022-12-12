@@ -1,13 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native"
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>François le BG</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<Provider store={store}>
+			<NavigationContainer>
+				<Stack.Navigator screenOptions={{ headerShown: true }}>
+					<Stack.Screen
+						name="Home"
+						component={HomeScreen}
+					/>
+					<Stack.Screen
+						name="Login"
+						component={Login}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Provider>
+	)
 }
 
 const styles = StyleSheet.create({
