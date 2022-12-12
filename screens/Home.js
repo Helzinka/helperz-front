@@ -1,7 +1,7 @@
 import { StyleSheet, Text } from "react-native";
 
 export default function MapScreen() {
-  return <Text> </Text>;
+  return <Text>ksdjfn </Text>;
 }
 
 const styles = StyleSheet.create({
