@@ -8,6 +8,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 import Home from "./screens/Home"
 import Login from "./screens/Login"
+import { StyleSheet } from "react-native"
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
 
@@ -33,7 +34,7 @@ const DrawerNavigator = () => {
 		>
 			<Drawer.Screen
 				name="Login"
-				component={Login}
+				component={Test}
 			/>
 		</Drawer.Navigator>
 	)
@@ -46,9 +47,16 @@ export default function App() {
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
 					<Stack.Screen
 						name="Home"
-						component={LoginScreen}
+						component={Home}
 					/>
-					{/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+					<Stack.Screen
+						name="Login"
+						component={Login}
+					/>
+					<Stack.Screen
+						name="drawer"
+						component={DrawerNavigator}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</Provider>
