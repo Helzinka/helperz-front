@@ -1,12 +1,7 @@
-import { Image, StyleSheet } from "react-native"
+import { StyleSheet, Text } from "react-native"
 
 export default function MapScreen() {
-	return (
-		<Image
-			source={require("../assets/adaptive-icon.png")}
-			style={styles.map}
-		/>
-	)
+	return <Text> jdnakj </Text>
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from "react-native"
+import { Text, StyleSheet } from "react-native"
 
 export default function MapScreen() {
 	return <Text>Login</Text>
