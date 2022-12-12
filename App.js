@@ -1,12 +1,21 @@
-import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<Text>ICI C'EST HELPERZ BB</Text>
-			<StatusBar style="auto" />
-		</View>
+		<Provider store={store}>
+			<NavigationContainer>
+				<Stack.Navigator screenOptions={{ headerShown: true }}>
+					<Stack.Screen
+						name="Home"
+						component={HomeScreen}
+					/>
+					<Stack.Screen
+						name="Login"
+						component={Login}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Provider>
 	)
 }
 
