@@ -1,12 +1,12 @@
-import { StyleSheet, Text } from "react-native"
+import { StyleSheet, Text } from "react-native";
 
 export default function MapScreen() {
-	return <Text> jdnakj </Text>
+  return <Text> </Text>;
 }
 
 const styles = StyleSheet.create({
-	map: {
-		width: "100%",
-		height: "100%",
-	},
-})
+  map: {
+    width: "100%",
+    height: "100%",
+  },
+});
