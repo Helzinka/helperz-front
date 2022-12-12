@@ -4,19 +4,29 @@ import { StyleSheet } from "react-native"
 import HomeScreen from "./screens/Home"
 import LoginScreen from "./screens/Login"
 
+import { Provider } from "react-redux"
+import { configureStore } from "@reduxjs/toolkit"
+import user from "./reducers/user"
+
+const store = configureStore({
+	reducer: { user },
+})
+
 export default function App() {
 	const Stack = createNativeStackNavigator()
 
 	return (
-		<NavigationContainer>
-			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				<Stack.Screen
-					name="Home"
-					component={LoginScreen}
-				/>
-				{/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-			</Stack.Navigator>
-		</NavigationContainer>
+		<Provider store={store}>
+			<NavigationContainer>
+				<Stack.Navigator screenOptions={{ headerShown: false }}>
+					<Stack.Screen
+						name="Home"
+						component={LoginScreen}
+					/>
+					{/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Provider>
 	)
 }
 

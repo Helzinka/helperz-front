@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useState } from "react"
 import {
 	Text,
 	StyleSheet,
@@ -9,11 +9,12 @@ import {
 } from "react-native"
 
 export default function MapScreen() {
-	const email = useRef("")
-	const password = useRef("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 
 	const handleSubmit = () => {
-		console.log("submit", email.current)
+		// console.log(email, password)
+		// use reducer
 	}
 
 	return (
@@ -26,24 +27,24 @@ export default function MapScreen() {
 					<Text style={styles.email_title}>Email</Text>
 					<TextInput
 						style={styles.input}
-						ref={email}
+						value={email}
+						onChangeText={(value) => setEmail(value)}
 						keyboardType="email-address" // https://reactnative.dev/docs/textinput#keyboardtype
 						textContentType="emailAddress" // https://reactnative.dev/docs/textinput#textcontenttype-ios
 						autoComplete="email" // https://reactnative.dev/docs/textinput#autocomplete-android
 					/>
 				</View>
-
 				<View style={styles.password}>
 					<Text style={styles.password_title}>Password</Text>
 					<TextInput
 						style={styles.input}
+						value={password}
+						onChangeText={(value) => setPassword(value)}
 						secureTextEntry={true}
 						textContentType="password" // https://reactnative.dev/docs/textinput#textcontenttype-ios
 						autoComplete="password" // https://reactnative.dev/docs/textinput#autocomplete-android
-						value={email}
 					/>
 				</View>
-
 				<TouchableOpacity
 					onPress={() => handleSubmit()}
 					style={styles.submit}
