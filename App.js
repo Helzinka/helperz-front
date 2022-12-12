@@ -1,20 +1,45 @@
+import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { StyleSheet } from "react-native"
-import HomeScreen from "./screens/Home"
-import LoginScreen from "./screens/Login"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createDrawerNavigator } from "@react-navigation/drawer"
 
+import FontAwesome from "react-native-vector-icons/FontAwesome"
+
+import Home from "./screens/Home"
+import Login from "./screens/Login"
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
+
+const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+const Drawer = createDrawerNavigator()
+
 import user from "./reducers/user"
 
 const store = configureStore({
 	reducer: { user },
 })
 
-export default function App() {
-	const Stack = createNativeStackNavigator()
+const DrawerNavigator = () => {
+	return (
+		<Drawer.Navigator
+			initialRouteName="Home"
+			screenOptions={{
+				header: (props) => <Header {...props} />,
+				drawerActiveTintColor: "#655074",
+				drawerType: "back",
+			}}
+		>
+			<Drawer.Screen
+				name="Login"
+				component={Login}
+			/>
+		</Drawer.Navigator>
+	)
+}
 
+export default function App() {
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
