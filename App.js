@@ -19,6 +19,7 @@ import user from "./reducers/user";
 const store = configureStore({
 	reducer: { user },
 });
+console.log("salut");
 
 const DrawerNavigator = () => {
 	return (
