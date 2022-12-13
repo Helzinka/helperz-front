@@ -6,23 +6,10 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={require("../assets/logo-black.png")}
-        />
-        <FontAwesome
-          name="bars"
-          size={35}
-          color="black"
-          style={styles.menuIcon}
-        />
-      </View>
       <Image
         source={require("../assets/Carrousel.jpg")}
         style={styles.carrousel}
@@ -78,24 +65,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
-    flex: 0.5,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingLeft: 15,
-  },
-  logo: {
-    width: "25%",
-    resizeMode: "contain",
-  },
-  menuIcon: {
-    width: "25%",
-    resizeMode: "contain",
-    paddingLeft: 35,
-  },
   carrousel: {
-    flex: 2,
+    flex: 1.5,
     width: "100%",
     height: "40%",
   },
