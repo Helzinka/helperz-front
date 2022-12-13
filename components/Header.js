@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    margin: 8,
+    margin: 10,
     // paddingLeft: 10,
   },
   logo: {
@@ -47,5 +47,6 @@ const styles = StyleSheet.create({
   },
   menuIcon: {
     // backgroundColor: "blue",
+    marginRight: 15,
   },
 });
