@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Home from "./screens/Home";
 import Login from "./screens/Login";
+import Annonce from "./screens/Annonce";
 import Header from "./components/Header";
 
 import { Provider } from "react-redux";
@@ -32,6 +33,7 @@ const DrawerNavigator = () => {
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen name="Annonce" component={Annonce} />
     </Drawer.Navigator>
   );
 };
