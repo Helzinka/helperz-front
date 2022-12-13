@@ -1,21 +1,29 @@
 {
-	"expo": {
-		"name": "helperz-front",
-		"slug": "helperz-front",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"userInterfaceStyle": "light",
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"backgroundColor": "#FFFFFF"
-			}
-		}
-	}
+  "expo": {
+    "name": "helperz-front",
+    "slug": "helperz",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a9be17a9-290d-40dc-9e26-2198bc486638"
+      }
+    },
+    "owner": "helzinka"
+  }
 }

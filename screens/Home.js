@@ -29,36 +29,30 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.card} activeOpacity={0.8}>
-          <Image
-            source={require("../assets/Carrousel.jpg")}
-            style={styles.imageCard}
-          />
-          <View style={styles.textCard}>
-            <Text style={styles.titreCard}>TITRE</Text>
-            <Text style={styles.textContent}>
-              Lorem ipsum dolor sit amet. Quo quod corrupti sit modi voluptas
-              qui consequuntur internos.
-            </Text>
-          </View>
-        </TouchableOpacity>
+				<TouchableOpacity style={styles.card} activeOpacity={0.8}>
+					<Image source={require("../assets/Carrousel.jpg")} style={styles.imageCard} />
+					<View style={styles.textCard}>
+						<Text style={styles.titreCard}>TITRE</Text>
+						<Text style={styles.textContent}>
+							Lorem ipsum dolor sit amet. Quo quod corrupti sit modi voluptas qui
+							consequuntur internos.
+						</Text>
+					</View>
+				</TouchableOpacity>
 
-        <TouchableOpacity style={styles.card} activeOpacity={0.8}>
-          <Image
-            source={require("../assets/Carrousel.jpg")}
-            style={styles.imageCard}
-          />
-          <View style={styles.textCard}>
-            <Text style={styles.titreCard}>TITRE</Text>
-            <Text style={styles.textContent}>
-              Lorem ipsum dolor sit amet. Quo quod corrupti sit modi voluptas
-              qui consequuntur internos.
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
+				<TouchableOpacity style={styles.card} activeOpacity={0.8}>
+					<Image source={require("../assets/Carrousel.jpg")} style={styles.imageCard} />
+					<View style={styles.textCard}>
+						<Text style={styles.titreCard}>TITRE</Text>
+						<Text style={styles.textContent}>
+							Lorem ipsum dolor sit amet. Quo quod corrupti sit modi voluptas qui
+							consequuntur internos.
+						</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
+		</SafeAreaView>
+	);
 }
 
 const styles = StyleSheet.create({
