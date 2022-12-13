@@ -19,7 +19,7 @@ import user from "./reducers/user";
 const store = configureStore({
 	reducer: { user },
 });
-console.log("salut");
+("trou de balle");
 
 const DrawerNavigator = () => {
 	return (
