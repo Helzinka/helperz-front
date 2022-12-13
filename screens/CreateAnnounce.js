@@ -34,20 +34,6 @@ export default function CreateAnnounce() {
 	const [adviceSelected, setadviceSelected] = useState(false);
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.header}>
-				<TouchableOpacity>
-					<FontAwesome
-						name="arrow-left"
-						size={20}
-						color="#000000"
-						style={styles.returnIcon}
-					/>
-				</TouchableOpacity>
-				<Image source={require("../assets/Logo-Full-Black.png")} style={styles.logo} />
-				<TouchableOpacity>
-					<FontAwesome name="times" size={20} color="#000000" style={styles.deleteIcon} />
-				</TouchableOpacity>
-			</View>
 			<Text style={styles.titleTop}>{titreIntro}</Text>
 			<Text style={styles.textContent}>{textIntro}</Text>
 
@@ -90,16 +76,8 @@ export default function CreateAnnounce() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
 	},
-	header: {
-		flex: 0.15,
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
 
-		backgroundColor: "#00C6A0",
-	},
 	returnIcon: {
 		marginLeft: 15,
 	},
