@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
 	card: {
 		display: "flex",
 		flexDirection: "row",
-		margin: 30,
+		justifyContent: "center",
+		width: "80%",
+		marginBottom: 10,
 	},
 	imageCard: {
 		height: 50,
