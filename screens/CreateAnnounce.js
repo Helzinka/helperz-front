@@ -1,22 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import {
+	Pressable,
 	SafeAreaView,
-	Image,
-	ScrollView,
 	StyleSheet,
 	Text,
 	TextInput,
 	TouchableOpacity,
 	View,
-	KeyboardAvoidingView,
-	Platform,
-	StatusBar,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useDispatch, useSelector } from "react-redux";
-import { addPlace, removePlace } from "../reducers/user";
 
 // const BACKEND_ADDRESS = 'http://BACKEND_IP:3000';
 
@@ -32,43 +27,48 @@ export default function CreateAnnounce() {
 	const [url, setUrl] = useState("");
 	const [helperSelected, sethelperSelected] = useState(false);
 	const [adviceSelected, setadviceSelected] = useState(false);
+
+	const handleSubmit = () => {};
+
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.titleTop}>{titreIntro}</Text>
-			<Text style={styles.textContent}>{textIntro}</Text>
-
-			<Text style={styles.textContent}>{question}</Text>
-			{/* <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-				<KeyboardAvoidingView styles={styles.inputContainer} enabled="false"> */}
-			<TextInput
-				style={styles.textInput}
-				onChangeText={setTitle}
-				value={title}
-				placeholder="less than 50 character"
-				keyboardType="default"
-			/>
-			<TextInput
-				style={styles.textInput}
-				onChangeText={setUrl}
-				value={url}
-				placeholder="copy your URL product"
-				keyboardType="url"
-			/>
-			{/* </KeyboardAvoidingView>
-			</ScrollView> */}
-			<View style={styles.checkboxContainer}>
-				<Text style={styles.textContent}>Je suis à la recherche de:</Text>
-				<Checkbox
-					value={helperSelected}
-					onValueChange={sethelperSelected}
-					style={styles.checkbox}
+			<View style={styles.textContainer}>
+				<Text style={styles.titleTop}>{titreIntro}</Text>
+				<Text style={styles.textContent}>{textIntro}</Text>
+			</View>
+			<View style={styles.inputContainer}>
+				<Text style={styles.textQuestion}>{question}</Text>
+				<TextInput
+					style={styles.textInput}
+					onChangeText={setTitle}
+					value={title}
+					placeholder="less than 50 character"
+					keyboardType="default"
 				/>
-				<Checkbox
-					value={adviceSelected}
-					onValueChange={setadviceSelected}
-					style={styles.checkbox}
+				<TextInput
+					style={styles.textInput}
+					onChangeText={setUrl}
+					value={url}
+					placeholder="copy your URL product"
+					keyboardType="url"
 				/>
 			</View>
+
+			<View style={styles.checkboxContainer}>
+				<Text style={styles.textContent}>Je suis à la recherche :</Text>
+				<View style={styles.checkbox}>
+					<Checkbox value={helperSelected} onValueChange={sethelperSelected} />
+					<Text style={styles.textContent}>un Helper</Text>
+				</View>
+				<View style={styles.checkbox}>
+					<Checkbox value={adviceSelected} onValueChange={setadviceSelected} />
+					<Text style={styles.textContent}>un conseil</Text>
+				</View>
+			</View>
+
+			<TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
+				<Text style={styles.valider}>Valider</Text>
+			</TouchableOpacity>
 		</SafeAreaView>
 	);
 }
@@ -76,15 +76,15 @@ export default function CreateAnnounce() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+
+		justifyContent: "space-around",
+	},
+	textContainer: {
+		flex: 0.2,
+		// backgroundColor: "yellow",
+		justifyContent: "space-around",
 	},
 
-	returnIcon: {
-		marginLeft: 15,
-	},
-	logo: {
-		width: "25%",
-		resizeMode: "contain",
-	},
 	deleteIcon: {
 		marginRight: 15,
 	},
@@ -93,12 +93,18 @@ const styles = StyleSheet.create({
 		marginLeft: 15,
 	},
 	titleTop: {
-		fontSize: 20,
+		fontWeight: "bold",
+		fontSize: 25,
 		marginLeft: 15,
 	},
-	// inputContainer:{
-
-	// }
+	inputContainer: {
+		// backgroundColor: "green",
+	},
+	textQuestion: {
+		fontSize: 14,
+		marginLeft: 15,
+		fontWeight: "bold",
+	},
 	textInput: {
 		height: 40,
 		margin: 12,
@@ -107,10 +113,32 @@ const styles = StyleSheet.create({
 		marginLeft: 15,
 	},
 	checkboxContainer: {
+		flex: 0.2,
+		width: "100%",
+		// backgroundColor: "red",
 		flexDirection: "column",
-		marginBottom: 20,
 	},
 	checkbox: {
+		flexDirection: "row",
+		alignSelf: "flex-start",
+
+		left: "150%",
+		paddingTop: 10,
+		justifyContent: "space-between",
+	},
+
+	button: {
+		height: 30,
+		width: "40%",
 		alignSelf: "center",
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 10,
+		backgroundColor: "#00C6A0",
+		marginBottom: 20,
+	},
+	valider: {
+		fontSize: 18,
+		fontWeight: "bold",
 	},
 });
