@@ -7,6 +7,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Header from "./components/Header";
 import CreateAnnounce from "./screens/CreateAnnounce";
+import Profil from "./screens/Profil";
 
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -34,6 +35,7 @@ const DrawerNavigator = () => {
 		>
 			<Drawer.Screen name="Home" component={Home} />
 			<Drawer.Screen name="Create Announce" component={CreateAnnounce} />
+			<Drawer.Screen name="Profile" component={Profil} />
 			<Drawer.Screen name="Login" component={Login} />
 		</Drawer.Navigator>
 	);
