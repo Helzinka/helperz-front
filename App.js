@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Home from "./screens/Home";
 import Login from "./screens/Login";
+import Annonce from "./screens/Annonce";
 import Header from "./components/Header";
 import CreateAnnounce from "./screens/CreateAnnounce";
 
@@ -17,36 +18,37 @@ const Drawer = createDrawerNavigator();
 import user from "./reducers/user";
 
 const store = configureStore({
-	reducer: { user },
+  reducer: { user },
 });
 ("trou de balle");
 
 const DrawerNavigator = () => {
-	return (
-		<Drawer.Navigator // Fonction pour le menu
-			initialRouteName="Home"
-			screenOptions={{
-				header: (props) => <Header {...props} />,
-				drawerActiveTintColor: "#655074",
-				drawerType: "back",
-				drawerPosition: "right", // Positionne le menu à droite
-			}}
-		>
-			<Drawer.Screen name="Home" component={Home} />
-			<Drawer.Screen name="Create Announce" component={CreateAnnounce} />
-			<Drawer.Screen name="Login" component={Login} />
-		</Drawer.Navigator>
-	);
+  return (
+    <Drawer.Navigator // Fonction pour le menu
+      initialRouteName="Home"
+      screenOptions={{
+        header: (props) => <Header {...props} />,
+        drawerActiveTintColor: "#655074",
+        drawerType: "back",
+        drawerPosition: "right", // Positionne le menu à droite
+      }}
+    >
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Create Announce" component={CreateAnnounce} />
+      <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen name="Annonce" component={Annonce} />
+    </Drawer.Navigator>
+  );
 };
 
 export default function App() {
-	return (
-		<Provider store={store}>
-			<NavigationContainer>
-				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
-				</Stack.Navigator>
-			</NavigationContainer>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+  );
 }
