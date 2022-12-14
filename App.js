@@ -10,6 +10,7 @@ import Header from "./components/Header"
 import CreateAnnounce from "./screens/CreateAnnounce"
 import Profil from "./screens/Profil"
 import PageAnnonce from "./screens/PageAnnonce"
+import ListAnnounce from "./screens/ListAnnounce"
 
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
@@ -27,7 +28,7 @@ const store = configureStore({
 const DrawerNavigator = () => {
 	return (
 		<Drawer.Navigator // Fonction pour le menu
-			initialRouteName="Home"
+			initialRouteName="Accueil"
 			screenOptions={{
 				header: (props) => <Header {...props} />,
 				drawerActiveTintColor: "#00C6A0",
@@ -59,6 +60,10 @@ const DrawerNavigator = () => {
 				name="Mes annonces"
 				component={PageAnnonce}
 			/>
+			<Drawer.Screen
+				name="Liste annonces"
+				component={ListAnnounce}
+			/>
 		</Drawer.Navigator>
 	)
 }
@@ -67,10 +72,10 @@ export default function App() {
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
-				<Stack.Navigator screenOptions={{ headerShown: true }}>
+				<Stack.Navigator screenOptions={{ headerShown: false }}>
 					<Stack.Screen
 						name="DrawerNavigator"
-						component={ListAnnounce}
+						component={DrawerNavigator}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
