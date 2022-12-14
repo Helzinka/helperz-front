@@ -1,28 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import {
-	Pressable,
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Checkbox from "expo-checkbox";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useDispatch, useSelector } from "react-redux";
-
-// const BACKEND_ADDRESS = 'http://BACKEND_IP:3000';
 
 // Message explicatif pour remplir un annonce
 const titreIntro = "Allons à l'essentiel";
 const textIntro = "Un titre précis est le meilleur moyen pour vous faire remarquer par un Helper";
 const question = "Quel est le titre de votre besoin ?";
 
-// permet de mettre un titre et de renseignner son URL
-
 export default function CreateAnnounce() {
+	// permet de mettre un titre et de renseignner son URL
 	const [title, setTitle] = useState("");
 	const [url, setUrl] = useState("");
 	const [helperSelected, sethelperSelected] = useState(false);

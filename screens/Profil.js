@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import {
-	Pressable,
 	SafeAreaView,
 	StyleSheet,
 	Text,
@@ -11,34 +10,68 @@ import {
 	Image,
 } from "react-native";
 import Checkbox from "expo-checkbox";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function Profil() {
-	const userData = {
-		username: "Pedro",
-		idUser: "@PedroLopez",
-		// profilPic: "logo.jpg",
-		description: "regard comme il fait beau",
-	};
-
+	// permet de mettre de renseigner Nom, prenom, age
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
+	const [age, setAge] = useState("");
+	const [description, setDescription] = useState("");
+	// checkbox compétence
+	const [adviceSelected, setadviceSelected] = useState(false);
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.imageContainer}>
-				<View style={styles.imageUser}>
+			<View style={styles.userContainer}>
+				<Text style={styles.title}>Présentation</Text>
+				<View style={styles.presentation}>
 					<Image
 						style={styles.imageUser}
-						// source={require("../assets/Carrousel.jpg")}
+						source={require("../assets/Carrousel.jpg")}
 					></Image>
+					<View style={styles.inputContainer}>
+						<TextInput
+							style={styles.name}
+							onChangeText={setName}
+							value={name}
+							placeholder="Entrer votre nom"
+							keyboardType="default"
+						/>
+						<TextInput
+							style={styles.surname}
+							onChangeText={setSurname}
+							value={surname}
+							placeholder="Entrer votre prénom"
+							keyboardType="default"
+						/>
+						<TextInput
+							style={styles.age}
+							onChangeText={setAge}
+							value={age}
+							placeholder="Entrer votre age"
+							keyboardType="numeric"
+						/>
+					</View>
+				</View>
+				<View>
+					<TextInput
+						style={styles.description}
+						onChangeText={setDescription}
+						value={description}
+						placeholder="Renseignez une description de 500 charactères max"
+						keyboardType="numeric"
+					/>
 				</View>
 			</View>
 
-			<View style={styles.profil}>
-				<Text style={styles.username}>{userData.username}</Text>
-				<Text style={styles.idUser}>{userData.idUser}</Text>
-				<View style={styles.description}>
-					<Text style={styles.description}>{userData.description}</Text>
+			<View style={styles.skillsContainer}>
+				<Text style={styles.skills}>Compétences</Text>
+				<View style={styles.checkbox}>
+					<Checkbox value={adviceSelected} onValueChange={setadviceSelected} />
+					<Text style={styles.textContent}>Beau</Text>
 				</View>
+			</View>
+			<View style={styles.reviewContainer}>
+				<Text style={styles.review}>Notes et commentaires</Text>
 			</View>
 		</SafeAreaView>
 	);
@@ -59,7 +92,7 @@ const styles = StyleSheet.create({
 		// borderColor: "black",
 		// borderRadius: "20px",
 	},
-	imageContainer: {
+	userContainer: {
 		flex: 0.5,
 		backgroundColor: "pink",
 		// 	height: "25%",
@@ -73,48 +106,50 @@ const styles = StyleSheet.create({
 		// 	borderTopLeftRadius: "20px",
 		// 	borderTopRightRadius: "20px",
 	},
-
-	imageUser: {
+	presentation: {
 		flex: 0.4,
 		backgroundColor: "red",
-		width: "50%",
-		alignSelf: "center",
+		width: "100%",
+		flexDirection: "row",
+		alignItems: "center",
 	},
-	image: {
-		backgroundColor: "yellow",
-		// 	borderRadius: "50%",
-		// 	height: 6,
-		// 	width: 6,
+	title: {
+		fontSize: 30,
+		fontWeight: "bold",
+		marginStart: 15,
 	},
-	profil: {
+
+	imageUser: {
+		height: "50%",
+		width: "25%",
+		marginStart: 15,
+	},
+	inputContainer: {
+		alignItems: "flex-start",
+		marginStart: 15,
+	},
+	description: {
+		marginStart: 15,
+		marginEnd: 15,
+	},
+
+	skillsContainer: {
+		flex: 0.3,
 		backgroundColor: "green",
 		//     flexDirection: "column",
 		//     alignItems: "center",
 		//     justifyContent: "space-around",
-
-		//     gap: 10px;
-		//     color: white;
-		//     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-		//         sans-serif;
 	},
-	// username: {
-	//     color: white;
-	//     font-weight: bold;
-	//     font-style: normal;
-	//     font-size: 25px;
-	// },
-	// idUser:{
-	//     color: grey;
-	// },
-
-	// description: {
-	//     display: flex;
-	//     align-items: center;
-	// },
-
-	// .profil {
-	//     display: flex;
-	//     align-items: center;
-	//     height: 60px;
-	// },
+	skills: {
+		marginStart: 15,
+		marginEnd: 15,
+	},
+	reviewContainer: {
+		flex: 0.3,
+		backgroundColor: "yellow",
+	},
+	review: {
+		marginStart: 15,
+		marginEnd: 15,
+	},
 });
