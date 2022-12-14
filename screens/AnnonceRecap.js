@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export default function Annonce() {
+export default function AnnonceRecap() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.validationContainer}>
