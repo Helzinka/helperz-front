@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
@@ -17,6 +16,7 @@ export default function Annonce() {
           <Text style={styles.textValidate}>Validé</Text>
         </View>
       </View>
+
       <View style={styles.recapMission}>
         <Text style={styles.titreAnnonce}>Titre de l'annonce</Text>
         <Text style={styles.textAnnonce}>
@@ -29,13 +29,31 @@ export default function Annonce() {
       </View>
 
       <View style={styles.profilContainer}>
-        <Text style={styles.nomHelperz}>Nom Helperz</Text>
-        <TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
-          <FontAwesome name="user" size={50} color={"white"} />
-        </TouchableOpacity>
+        <View style={styles.photo}>
+          <TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
+            <FontAwesome name="user" size={50} color={"white"} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.profil}>
+          <Text style={styles.nomHelperz}>Nom Helperz</Text>
+          <View style={styles.notation}>
+            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+          </View>
+        </View>
       </View>
 
-      <View style={styles.buttonContainer}></View>
+      <View style={styles.buttonContainer}>
+        <View style={styles.price}>
+          <Text style={styles.text}>50€</Text>
+        </View>
+        <View style={styles.calendar}>
+          <Text style={styles.text}>23/12/2022</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -81,9 +99,14 @@ const styles = StyleSheet.create({
   },
   profilContainer: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+  },
+  photo: {
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   avatar: {
     width: 100,
@@ -92,7 +115,11 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "#006EFF",
     backgroundColor: "#006EFF",
-    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  profil: {
+    flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
@@ -101,11 +128,36 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "black",
   },
-  textContent: {
-    fontSize: 12,
+  notation: {
+    flexDirection: "row",
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: "blue",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  price: {
+    backgroundColor: "#F94A56",
+    borderRadius: 15,
+    width: "40%",
+    height: "60%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  calendar: {
+    backgroundColor: "#F94A56",
+    borderRadius: 15,
+    width: "40%",
+    height: "60%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "white",
   },
 });
