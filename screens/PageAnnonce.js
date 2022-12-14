@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   },
   textValidate: {
     fontSize: 14,
+    color: "white",
   },
   buttonContact: {
     backgroundColor: "#006EFF",

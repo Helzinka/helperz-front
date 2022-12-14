@@ -26,19 +26,19 @@ const store = configureStore({
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator // Fonction pour le menu
-      initialRouteName="PageAnnonce"
+      initialRouteName="Home"
       screenOptions={{
         header: (props) => <Header {...props} />,
-        drawerActiveTintColor: "#655074",
+        drawerActiveTintColor: "#00C6A0",
         drawerType: "back",
         drawerPosition: "right", // Positionne le menu à droite
       }}
     >
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Create Announce" component={CreateAnnounce} />
-      <Drawer.Screen name="Login" component={Login} />
-      <Drawer.Screen name="AnnonceRecap" component={AnnonceRecap} />
-      <Drawer.Screen name="PageAnnonce" component={PageAnnonce} />
+      <Drawer.Screen name="Accueil" component={Home} />
+      <Drawer.Screen name="Créer une annonce" component={CreateAnnounce} />
+      <Drawer.Screen name="Se connecter" component={Login} />
+      <Drawer.Screen name="Annnonces validées" component={AnnonceRecap} />
+      <Drawer.Screen name="Mes annonces" component={PageAnnonce} />
     </Drawer.Navigator>
   );
 };
