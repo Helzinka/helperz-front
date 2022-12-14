@@ -5,9 +5,11 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 
 import Home from "./screens/Home"
 import Login from "./screens/Login"
+import AnnonceRecap from "./screens/AnnonceRecap"
 import Header from "./components/Header"
 import CreateAnnounce from "./screens/CreateAnnounce"
-import ListAnnounce from "./screens/ListAnnounce"
+import Profil from "./screens/Profil"
+import PageAnnonce from "./screens/PageAnnonce"
 
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
@@ -28,26 +30,34 @@ const DrawerNavigator = () => {
 			initialRouteName="Home"
 			screenOptions={{
 				header: (props) => <Header {...props} />,
-				drawerActiveTintColor: "#655074",
+				drawerActiveTintColor: "#00C6A0",
 				drawerType: "back",
 				drawerPosition: "right", // Positionne le menu à droite
 			}}
 		>
 			<Drawer.Screen
-				name="Home"
+				name="Accueil"
 				component={Home}
 			/>
 			<Drawer.Screen
-				name="Create Announce"
+				name="Créer une annonce"
 				component={CreateAnnounce}
 			/>
-			<Stack.Screen
-				name="List Annonces"
-				component={ListAnnounce}
+			<Drawer.Screen
+				name="Profile"
+				component={Profil}
 			/>
 			<Drawer.Screen
-				name="Login"
+				name="Se connecter"
 				component={Login}
+			/>
+			<Drawer.Screen
+				name="Annnonces validées"
+				component={AnnonceRecap}
+			/>
+			<Drawer.Screen
+				name="Mes annonces"
+				component={PageAnnonce}
 			/>
 		</Drawer.Navigator>
 	)
