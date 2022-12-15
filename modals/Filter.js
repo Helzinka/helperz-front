@@ -1,27 +1,20 @@
-import { Modal, View, Text, Pressable, StyleSheet } from "react-native"
-import Checkbox from "expo-checkbox"
-import { useState } from "react"
-import Slider from "@react-native-community/slider"
-import FontAwesome from "react-native-vector-icons/FontAwesome"
+import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
+import Checkbox from "expo-checkbox";
+import { useState } from "react";
+import Slider from "@react-native-community/slider";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function Filter({ isVisible, onClose }) {
-	const [checkbox, setCheckbox] = useState()
-	const [slider, setSlider] = useState()
+	const [checkbox, setCheckbox] = useState();
+	const [slider, setSlider] = useState();
 
 	return (
-		<Modal
-			animationType="slide"
-			visible={isVisible}
-		>
+		<Modal animationType="slide" visible={isVisible}>
 			<View style={styles.modal}>
 				<View>
 					<Text>Filtre </Text>
 					<Pressable onPress={onClose}>
-						<FontAwesome
-							name="close"
-							size={20}
-							style={styles.plus}
-						></FontAwesome>
+						<FontAwesome name="close" size={20} style={styles.plus}></FontAwesome>
 					</Pressable>
 				</View>
 				<View style={styles.checkbox}>
@@ -44,7 +37,7 @@ export default function Filter({ isVisible, onClose }) {
 				</View>
 			</View>
 		</Modal>
-	)
+	);
 }
 const styles = StyleSheet.create({
 	modal: {
@@ -62,4 +55,4 @@ const styles = StyleSheet.create({
 	sliderText: {
 		marginRight: 10,
 	},
-})
+});
