@@ -11,6 +11,7 @@ import CreateAnnounce from "./screens/CreateAnnounce"
 import Profil from "./screens/Profil"
 import PageAnnonce from "./screens/PageAnnonce"
 import ListAnnounce from "./screens/ListAnnounce"
+import ListHelperz from "./screens/ListHelperz"
 
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
@@ -63,6 +64,10 @@ const DrawerNavigator = () => {
 			<Drawer.Screen
 				name="Liste annonces"
 				component={ListAnnounce}
+			/>
+			<Drawer.Screen
+				name="Liste helperz"
+				component={ListHelperz}
 			/>
 		</Drawer.Navigator>
 	)

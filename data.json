@@ -78,5 +78,35 @@
 				}
 			]
 		}
+	],
+	"user": [
+		{
+			"id": "1",
+			"name": "Jhon",
+			"lastname": "Doe",
+			"date": "2022/10/01 08:02:23",
+			"email": "Jhon@Doe.com",
+			"isHelper": "true",
+			"available": "true",
+			"location": "Bordeaux",
+			"descritption": "Je suis spcecialiste des motos, moi même gérant d'un magasins de vélo",
+			"domaine": ["vehicule", "moto"],
+			"review": 4.7,
+			"score": 719
+		},
+		{
+			"id": "1",
+			"name": "Michel",
+			"lastname": "Dumas",
+			"date": "2022/10/01 08:02:23",
+			"email": "Michel@Dumas.com",
+			"isHelper": "true",
+			"available": "true",
+			"location": "Paris",
+			"descritption": "Je suis artisant depuis 10 ans, spécialiste de réparation intérieur ..",
+			"domaine": ["electro-menager", "vetement"],
+			"review": 3.5,
+			"score": 349
+		}
 	]
 }

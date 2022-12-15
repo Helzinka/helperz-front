@@ -1,19 +1,35 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 
 // accès à props "data" directement grace à la destructuration
-export default function Card({ data }) {
-	return (
-		<TouchableOpacity style={styles.card}>
-			<Image
-				source={require("../assets/Logo-Full-Black.png")}
-				style={styles.imageCard}
-			/>
-			<View style={styles.content}>
-				<Text style={styles.title}>{data.title}</Text>
-				<Text style={styles.descritption}>{data.descritption}</Text>
-			</View>
-		</TouchableOpacity>
-	)
+// si type == "helperz" affiche la card helperz, sinon annonces
+export default function Card({ data, type }) {
+	if (type === "helperz") {
+		return (
+			<TouchableOpacity style={styles.card}>
+				<Image
+					source={require("../assets/Logo-Full-Black.png")}
+					style={styles.imageCard}
+				/>
+				<View style={styles.content}>
+					<Text style={styles.title}>{data.name}</Text>
+					<Text style={styles.descritption}>{data.descritption}</Text>
+				</View>
+			</TouchableOpacity>
+		)
+	} else {
+		return (
+			<TouchableOpacity style={styles.card}>
+				<Image
+					source={require("../assets/Logo-Full-Black.png")}
+					style={styles.imageCard}
+				/>
+				<View style={styles.content}>
+					<Text style={styles.title}>{data.title}</Text>
+					<Text style={styles.descritption}>{data.descritption}</Text>
+				</View>
+			</TouchableOpacity>
+		)
+	}
 }
 
 const styles = StyleSheet.create({

@@ -33,14 +33,15 @@ export default function Annonce({ navigation }) {
 		setData(mongodb)
 	}, [])
 
-	// fonction pour retourner toutes les annonces via le composant "Card"
+	// fonction pour retourner toutes les helperz via le composant "Card"
 	// check si les données sont présente via if(data) !important
 	const showAnnounce = () => {
 		if (data) {
-			return data.announce.map((value, index) => (
+			return data.user.map((value, index) => (
 				<Card
 					key={index}
 					data={value}
+					type="helperz"
 				/>
 			))
 		}
@@ -52,7 +53,7 @@ export default function Annonce({ navigation }) {
 					style={styles.search}
 					onChangeText={setSearch}
 					value={search}
-					placeholder="search"
+					placeholder="Location"
 				></TextInput>
 				<View style={styles.filters}>
 					<TouchableOpacity onPress={() => isVisible()}>
@@ -67,10 +68,10 @@ export default function Annonce({ navigation }) {
 						showsHorizontalScrollIndicator={false}
 					>
 						<Pressable style={styles.filter}>
-							<Text>date</Text>
+							<Text>Paris</Text>
 						</Pressable>
 						<Pressable style={styles.filter}>
-							<Text>tag</Text>
+							<Text>Date</Text>
 						</Pressable>
 					</ScrollView>
 				</View>
