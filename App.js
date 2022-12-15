@@ -2,6 +2,10 @@ import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { createDrawerNavigator } from "@react-navigation/drawer"
+
+import { StyleSheet } from "react-native"
+
+import FontAwesome from "react-native-vector-icons/FontAwesome"
 import { StripeProvider } from "@stripe/stripe-react-native"
 import Home from "./screens/Home"
 import Login from "./screens/Login"
@@ -11,6 +15,8 @@ import CreateAnnounce from "./screens/CreateAnnounce"
 import Profil from "./screens/Profil"
 import PageAnnonce from "./screens/PageAnnonce"
 import ListAnnounce from "./screens/ListAnnounce"
+import AnnonceFromHelperz from "./screens/AnnonceFromHelperz"
+import MesMessages from "./screens/listMessages"
 import ListHelperz from "./screens/ListHelperz"
 import Payment from "./screens/Payment"
 
@@ -66,6 +72,14 @@ const DrawerNavigator = () => {
 				component={ListAnnounce}
 			/>
 			<Drawer.Screen
+				name="Profil Helperz"
+				component={AnnonceFromHelperz}
+			/>
+			<Drawer.Screen
+				name="Mes Messages"
+				component={MesMessages}
+			/>
+			<Drawer.Screen
 				name="Liste helperz"
 				component={ListHelperz}
 			/>
@@ -95,3 +109,5 @@ export default function App() {
 		</Provider>
 	)
 }
+
+const styles = StyleSheet.create({})
