@@ -3,6 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+import { StyleSheet } from "react-native";
+
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import AnnonceRecap from "./screens/AnnonceRecap";
@@ -11,6 +15,8 @@ import CreateAnnounce from "./screens/CreateAnnounce";
 import Profil from "./screens/Profil";
 import PageAnnonce from "./screens/PageAnnonce";
 import ListAnnounce from "./screens/ListAnnounce";
+import AnnonceFromHelperz from "./screens/AnnonceFromHelperz";
+import MesMessages from "./screens/listMessages";
 import ListHelperz from "./screens/ListHelperz";
 
 import { Provider } from "react-redux";
@@ -39,7 +45,7 @@ const DrawerNavigator = () => {
 		>
 			<Drawer.Screen name="Accueil" component={Home} />
 			<Drawer.Screen name="Créer une annonce" component={CreateAnnounce} />
-			<Drawer.Screen name="Profil" component={Profil} />
+			<Drawer.Screen name="Profile" component={Profil} />
 			<Drawer.Screen name="Se connecter" component={Login} />
 			<Drawer.Screen name="Annnonces validées" component={AnnonceRecap} />
 			<Drawer.Screen name="Mes annonces" component={PageAnnonce} />
@@ -60,3 +66,5 @@ export default function App() {
 		</Provider>
 	);
 }
+
+const styles = StyleSheet.create({});
