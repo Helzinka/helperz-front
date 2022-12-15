@@ -16,7 +16,7 @@ import Profil from "./screens/Profil";
 import PageAnnonce from "./screens/PageAnnonce";
 import ListAnnounce from "./screens/ListAnnounce";
 import AnnonceFromHelperz from "./screens/AnnonceFromHelperz";
-import Messages from "./components/Messages";
+import MesMessages from "./screens/listMessages";
 
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -34,7 +34,7 @@ const store = configureStore({
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator // Fonction pour le menu
-      initialRouteName="Voir les Helperz"
+      initialRouteName="Accueil"
       screenOptions={{
         header: (props) => <Header {...props} />,
         drawerActiveTintColor: "#00C6A0",
@@ -50,7 +50,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Mes annonces" component={PageAnnonce} />
       <Drawer.Screen name="Liste annonces" component={ListAnnounce} />
       <Drawer.Screen name="Profil des Helperz" component={AnnonceFromHelperz} />
-      <Drawer.Screen name="Mes Messages" component={Messages} />
+      <Drawer.Screen name="Mes Messages" component={MesMessages} />
     </Drawer.Navigator>
   );
 };
