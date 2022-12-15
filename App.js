@@ -50,6 +50,8 @@ const DrawerNavigator = () => {
 			<Drawer.Screen name="Annnonces validées" component={AnnonceRecap} />
 			<Drawer.Screen name="Mes annonces" component={PageAnnonce} />
 			<Drawer.Screen name="Liste annonces" component={ListAnnounce} />
+			<Drawer.Screen name="Profil Helperz" component={AnnonceFromHelperz} />
+			<Drawer.Screen name="Mes Messages" component={MesMessages} />
 			<Drawer.Screen name="Liste helperz" component={ListHelperz} />
 		</Drawer.Navigator>
 	);
