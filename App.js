@@ -2,7 +2,7 @@ import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { createDrawerNavigator } from "@react-navigation/drawer"
-
+import { StripeProvider } from "@stripe/stripe-react-native"
 import Home from "./screens/Home"
 import Login from "./screens/Login"
 import AnnonceRecap from "./screens/AnnonceRecap"
@@ -12,6 +12,7 @@ import Profil from "./screens/Profil"
 import PageAnnonce from "./screens/PageAnnonce"
 import ListAnnounce from "./screens/ListAnnounce"
 import ListHelperz from "./screens/ListHelperz"
+import Payment from "./screens/Payment"
 
 import { Provider } from "react-redux"
 import { configureStore } from "@reduxjs/toolkit"
@@ -24,7 +25,6 @@ import user from "./reducers/user"
 const store = configureStore({
 	reducer: { user },
 })
-;("trou de balle")
 
 const DrawerNavigator = () => {
 	return (
@@ -69,21 +69,29 @@ const DrawerNavigator = () => {
 				name="Liste helperz"
 				component={ListHelperz}
 			/>
+			<Drawer.Screen
+				name="Paiement"
+				component={Payment}
+			/>
 		</Drawer.Navigator>
 	)
 }
 
 export default function App() {
+	const publishableKey =
+		"pk_test_51MFIEAJUu2vuwfEB1s5m4rSFn3LChMT7hnO41BWuXCmOfrsIpuPAdbDYuiTl3tJ9yOvj20HYskmYXfUNkjjUphWi00LVe8boQy"
 	return (
 		<Provider store={store}>
-			<NavigationContainer>
-				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen
-						name="DrawerNavigator"
-						component={DrawerNavigator}
-					/>
-				</Stack.Navigator>
-			</NavigationContainer>
+			<StripeProvider publishableKey={publishableKey}>
+				<NavigationContainer>
+					<Stack.Navigator screenOptions={{ headerShown: false }}>
+						<Stack.Screen
+							name="DrawerNavigator"
+							component={DrawerNavigator}
+						/>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</StripeProvider>
 		</Provider>
 	)
 }
