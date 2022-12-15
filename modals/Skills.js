@@ -1,4 +1,4 @@
-import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
+import { Modal, View, Text, Pressable, StyleSheet, StatusBar, Platform } from "react-native";
 import Checkbox from "expo-checkbox";
 import { useState } from "react";
 import Slider from "@react-native-community/slider";
@@ -160,6 +160,7 @@ export default function Filter({ isVisible, onClose }) {
 const styles = StyleSheet.create({
 	modal: {
 		flex: 1,
+		paddingTop: Platform.OS === "ios" ? StatusBar.currentHeight : 0,
 		// justifyContent: "center",
 	},
 	headerContainer: {
