@@ -46,7 +46,7 @@ const DrawerNavigator = () => {
     >
       <Drawer.Screen name="Accueil" component={Home} />
       <Drawer.Screen name="Créer une annonce" component={CreateAnnounce} />
-      <Drawer.Screen name="Profile" component={Profil} />
+      <Drawer.Screen name="Mon profil" component={Profil} />
       <Drawer.Screen name="Se connecter" component={Login} />
       <Drawer.Screen name="Annnonces validées" component={AnnonceRecap} />
       <Drawer.Screen name="Mes annonces" component={PageAnnonce} />
