@@ -12,10 +12,11 @@ import {
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import SkillsModal from "../modals/Skills";
+import StatusModal from "../modals/Status";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 // pour importer des icons du site fontawesome il faut remplacer les - par des maj et ajouter fa au début du mot
-import { faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlassPlus, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import Review from "../components/Review";
 
 export default function Profil() {
@@ -25,13 +26,23 @@ export default function Profil() {
 	const [age, setAge] = useState("");
 	const [description, setDescription] = useState("");
 	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [modalStatus, setModalStatus] = useState(false);
 
-	// affiche la modal au click de l'icon "+"
+	// affiche la modal online au click de l'icon "profil"
+	const status = () => {
+		setModalStatus(!modalStatus);
+	};
+	// ferme la modal online au click dans la modal "quitter"
+	const closeStatus = () => {
+		setModalStatus(!modalStatus);
+	};
+
+	// affiche la modal skills au click de l'icon "loupe"
 	const isVisible = () => {
 		setIsModalVisible(!isModalVisible);
 	};
 
-	// ferme la modal au click dans la modal "quitter"
+	// ferme la modal skills au click dans la modal "quitter"
 	const onClose = () => {
 		// console.log("ok");
 		setIsModalVisible(!isModalVisible);
@@ -48,6 +59,24 @@ export default function Profil() {
 					></Image>
 
 					<View style={styles.inputContainer}>
+						<View style={styles.statusContainer}>
+							<TouchableOpacity
+								style={styles.statusContainer}
+								onPress={() => status()}
+							>
+								<FontAwesomeIcon
+									icon={faCircleUser}
+									size={18}
+									color="blue"
+									style={styles.status}
+								></FontAwesomeIcon>
+								<Text style={styles.statusText}>En ligne</Text>
+								<StatusModal
+									isVisible={modalStatus}
+									onClose={() => closeStatus()}
+								></StatusModal>
+							</TouchableOpacity>
+						</View>
 						<TextInput
 							style={styles.textContent}
 							onChangeText={setName}
@@ -128,6 +157,17 @@ const styles = StyleSheet.create({
 		// borderWidth: "1px",
 		// borderColor: "black",
 		// borderRadius: "20px",
+	},
+	statusContainer: {
+		flexDirection: "row",
+	},
+	status: {
+		fontSize: 14,
+		marginLeft: 15,
+	},
+	statusText: {
+		fontSize: 14,
+		marginLeft: 10,
 	},
 	textContent: {
 		fontSize: 14,
