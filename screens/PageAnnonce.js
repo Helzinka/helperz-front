@@ -8,7 +8,7 @@ import {
 import MapView from "react-native-maps";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export default function PageAnnonce() {
+export default function PageAnnonce({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.annonceContainer}>
@@ -45,7 +45,10 @@ export default function PageAnnonce() {
         <TouchableOpacity style={styles.buttonValidate}>
           <Text style={styles.textValidate}>Accepter</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContact}>
+        <TouchableOpacity
+          style={styles.buttonContact}
+          onPress={() => navigation.navigate("Messagerie")}
+        >
           <Text style={styles.textValidate}>Contacter</Text>
         </TouchableOpacity>
       </View>
