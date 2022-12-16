@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	View,
 	Image,
+	ScrollView,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import SkillsModal from "../modals/Skills";
@@ -15,6 +16,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 // pour importer des icons du site fontawesome il faut remplacer les - par des maj et ajouter fa au début du mot
 import { faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
+import Review from "../components/Review";
 
 export default function Profil() {
 	// permet de mettre de renseigner Nom, prenom, age
@@ -44,6 +46,7 @@ export default function Profil() {
 						style={styles.imageUser}
 						source={require("../assets/Carrousel.jpg")}
 					></Image>
+
 					<View style={styles.inputContainer}>
 						<TextInput
 							style={styles.textContent}
@@ -68,13 +71,13 @@ export default function Profil() {
 						/>
 					</View>
 				</View>
-				<View>
+				<View style={styles.descriptionContainer}>
 					<TextInput
 						style={styles.description}
 						onChangeText={setDescription}
 						value={description}
 						placeholder="Renseignez une description de 500 charactères max"
-						keyboardType="numeric"
+						keyboardType="default"
 					/>
 				</View>
 			</View>
@@ -98,6 +101,14 @@ export default function Profil() {
 			</View>
 			<View style={styles.reviewContainer}>
 				<Text style={styles.review}>Notes et commentaires</Text>
+				<ScrollView>
+					<Review />
+					<Review />
+					<Review />
+					<Review />
+					<Review />
+					<Review />
+				</ScrollView>
 			</View>
 		</SafeAreaView>
 	);
@@ -122,23 +133,15 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		marginLeft: 15,
 	},
-	userContainer: {
-		flex: 0.5,
-		backgroundColor: "pink",
-		// 	height: "25%",
-		// 	position: "relative",
-		// },
-		// imageback: {
-		// 	flex: 0.2,
-		// 	// height: "100%",
-		// 	// width: "100%",
 
-		// 	borderTopLeftRadius: "20px",
-		// 	borderTopRightRadius: "20px",
-	},
-	presentation: {
+	userContainer: {
 		flex: 0.4,
-		backgroundColor: "red",
+		// backgroundColor: "pink",
+	},
+
+	presentation: {
+		flex: 0.45,
+		// backgroundColor: "red",
 		width: "100%",
 		flexDirection: "row",
 		alignItems: "center",
@@ -150,29 +153,59 @@ const styles = StyleSheet.create({
 	},
 
 	imageUser: {
-		height: "50%",
-		width: "25%",
+		height: 100,
+		width: 100,
 		marginStart: 15,
+		borderWidth: 1,
+		borderColor: "black",
+		border: "solid",
+		borderRadius: 50,
 	},
 	inputContainer: {
 		alignItems: "flex-start",
 		marginStart: 15,
 	},
+	descriptionContainer: {
+		flex: 0.45,
+	},
 	description: {
+		class: "box",
+		height: "100%",
 		fontSize: 14,
+		marginTop: 15,
 		marginStart: 15,
 		marginEnd: 15,
+		textAlign: "center",
+		borderWidth: 0.5,
+		borderColor: "black",
+		borderRadius: 10,
+
+		// shadowColor: "#000",
+		// shadowOffset: {
+		// 	width: -5,
+		// 	height: 2,
+		// },
+		// shadowOpacity: 0.25,
+		// shadowRadius: 6,
+
+		// elevation: 5,
+
+		// 	shadowColor: "black",
+		// 	shadowOpacity: 0.2,
+		// 	elevation: 10,
 	},
 
 	skillContainer: {
 		flex: 0.3,
-		backgroundColor: "green",
+
+		// backgroundColor: "green",
 		//     flexDirection: "column",
 		//     alignItems: "center",
 		//     justifyContent: "space-around",
 	},
 	skill: {
 		flexDirection: "row",
+		marginTop: 10,
 	},
 	titleSkill: {
 		fontSize: 18,
@@ -192,9 +225,11 @@ const styles = StyleSheet.create({
 	},
 	reviewContainer: {
 		flex: 0.3,
-		backgroundColor: "yellow",
+		// backgroundColor: "yellow",
 	},
 	review: {
+		fontSize: 18,
+		fontWeight: "bold",
 		marginStart: 15,
 		marginEnd: 15,
 	},

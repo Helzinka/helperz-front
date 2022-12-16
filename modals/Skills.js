@@ -6,7 +6,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function Filter({ isVisible, onClose }) {
+export default function Skills({ isVisible, onClose }) {
 	const [checkbox, setCheckbox] = useState();
 	const [slider, setSlider] = useState();
 	// checkbox skills
