@@ -1,91 +1,136 @@
-import React from "react";
-import { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import Checkbox from "expo-checkbox";
-
-// Message explicatif pour remplir un annonce
-const titreIntro = "Allons à l'essentiel";
-const textIntro = "Un titre précis est le meilleur moyen pour vous faire remarquer par un Helper";
-const question = "Quel est le titre de votre besoin ?";
+import React from "react"
+import { useState, useRef } from "react"
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import Checkbox from "expo-checkbox"
+import Tags from "react-native-tags"
+import { useSelector } from "react-redux"
+import { IP_LOCAL } from "@env"
 
 export default function CreateAnnounce() {
 	// permet de mettre un titre et de renseignner son URL
-	const [title, setTitle] = useState("");
-	const [url, setUrl] = useState("");
-	const [helperSelected, sethelperSelected] = useState(false);
-	const [adviceSelected, setadviceSelected] = useState(false);
+	const BASE_URL = `http://${IP_LOCAL}:3000`
+	const [title, setTitle] = useState("")
+	const [url, setUrl] = useState("")
+	const [price, setPrice] = useState("")
+	const [description, setDescription] = useState("")
+	const [tag, setTag] = useState([])
+	const [city, setCity] = useState()
+	const UserReducer = useSelector((state) => state.user.value)
 
-	const handleSubmit = () => {};
+	const handleSubmit = () => {
+		fetch(`https://api-adresse.data.gouv.fr/search/?q=${city}`)
+			.then((response) => response.json())
+			.then((data) => {
+				let firstCity = data.features[0]
+				const infos = {
+					title: title,
+					url: url,
+					price: Number(price),
+					description: description,
+					tag: tag[0],
+					// vraie comportement
+					// userOwner : UserReducer.user.id
+					// user "Test" => 639f238251b4d699e1473f29
+					userOwner: "639f238251b4d699e1473f29",
+					location: {
+						name: firstCity.properties.city,
+						lat: firstCity.geometry.coordinates[1],
+						long: firstCity.geometry.coordinates[0],
+					},
+				}
+				return fetch(`${BASE_URL}/announces`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(infos),
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						console.log(data)
+					})
+			})
+	}
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.textContainer}>
-				<Text style={styles.titleTop}>{titreIntro}</Text>
-				<Text style={styles.textContent}>{textIntro}</Text>
-			</View>
+			<Text style={styles.title}>Création D'annonce</Text>
 			<View style={styles.inputContainer}>
-				<Text style={styles.textQuestion}>{question}</Text>
 				<TextInput
 					style={styles.textInput}
-					onChangeText={setTitle}
 					value={title}
-					placeholder="less than 50 character"
-					keyboardType="default"
+					onChangeText={setTitle}
+					placeholder="Titre de l'annonce"
 				/>
 				<TextInput
 					style={styles.textInput}
-					onChangeText={setUrl}
 					value={url}
-					placeholder="copy your URL product"
-					keyboardType="url"
+					onChangeText={setUrl}
+					placeholder="Url de votre annonce"
+				/>
+				<TextInput
+					style={styles.textInput}
+					value={price}
+					onChangeText={setPrice}
+					placeholder="Prix demandé"
+				/>
+				<TextInput
+					style={styles.textInput}
+					value={description}
+					onChangeText={setDescription}
+					placeholder="Description"
+				/>
+				<TextInput
+					style={styles.textInput}
+					value={city}
+					onChangeText={setCity}
+					placeholder="ville"
+				/>
+
+				<Tags
+					onChangeTags={(tags) => setTag((tag) => [...tag, tags])}
+					tagTextStyle={{ color: "red" }}
+					containerStyle={{ justifyContent: "center" }}
+					inputStyle={{ backgroundColor: "whtie" }}
+					renderTag={({ tag, index, onPress, deleteTagOnPress, readonly }) => (
+						<TouchableOpacity
+							key={`${tag}-${index}`}
+							onPress={onPress}
+						>
+							<View style={styles.tag}>
+								<Text>{tag}</Text>
+							</View>
+						</TouchableOpacity>
+					)}
 				/>
 			</View>
 
-			<View style={styles.checkboxContainer}>
-				<Text style={styles.textContent}>Je suis à la recherche :</Text>
-				<View style={styles.checkbox}>
-					<Checkbox value={helperSelected} onValueChange={sethelperSelected} />
-					<Text style={styles.textContent}>un Helper</Text>
-				</View>
-				<View style={styles.checkbox}>
-					<Checkbox value={adviceSelected} onValueChange={setadviceSelected} />
-					<Text style={styles.textContent}>un conseil</Text>
-				</View>
-			</View>
-
-			<TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
+			<TouchableOpacity
+				style={styles.button}
+				onPress={() => handleSubmit()}
+			>
 				<Text style={styles.valider}>Valider</Text>
 			</TouchableOpacity>
 		</SafeAreaView>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-
-		justifyContent: "space-around",
+		width: "100%",
+		alignItems: "center",
 	},
-	textContainer: {
-		flex: 0.2,
-		// backgroundColor: "yellow",
-		justifyContent: "space-around",
+	inputContainer: {
+		width: "80%",
 	},
-
-	deleteIcon: {
-		marginRight: 15,
-	},
-	textContent: {
-		fontSize: 14,
-		marginLeft: 15,
-	},
-	titleTop: {
+	title: {
 		fontWeight: "bold",
 		fontSize: 25,
 		marginLeft: 15,
 	},
-	inputContainer: {
-		// backgroundColor: "green",
+
+	textContent: {
+		fontSize: 14,
+		marginLeft: 15,
 	},
 	textQuestion: {
 		fontSize: 14,
@@ -98,20 +143,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		padding: 10,
 		marginLeft: 15,
-	},
-	checkboxContainer: {
-		flex: 0.2,
-		width: "100%",
-		// backgroundColor: "red",
-		flexDirection: "column",
-	},
-	checkbox: {
-		flexDirection: "row",
-		alignSelf: "flex-start",
-
-		left: "150%",
-		paddingTop: 10,
-		justifyContent: "space-between",
 	},
 
 	button: {
@@ -128,4 +159,13 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: "bold",
 	},
-});
+	tag: {
+		marginRight: 10,
+		padding: 5,
+		backgroundColor: "#ccc",
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
+		borderTopLeftRadius: 10,
+		borderTopRightRadius: 10,
+	},
+})
