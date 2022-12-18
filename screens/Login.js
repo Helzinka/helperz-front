@@ -10,6 +10,7 @@ import { sign } from "../reducers/user"
 
 export default function Login({ navigation }) {
 	//mettre votre ip dans .env
+
 	const BASE_URL = `http://${IP_LOCAL}:3000`
 
 	const [singnin, setSignin] = useState(false)
@@ -18,6 +19,7 @@ export default function Login({ navigation }) {
 	const [username, setUsername] = useState("")
 
 	const dispatch = useDispatch()
+
 	// connection à google
 	// const [request, response, promptAsync] = Google.useAuthRequest({
 	// 	expoClientId: GOOGLE_ID,
@@ -29,7 +31,6 @@ export default function Login({ navigation }) {
 	// 		const { authentication } = response
 	// 	}
 	// }, [response])
-
 	const handleSubmit = (action) => {
 		let user = {
 			password: password,
@@ -38,15 +39,11 @@ export default function Login({ navigation }) {
 		if (action == "signup") {
 			user.username = username
 		}
-		fetch(
-			`${BASE_URL}/users/${action}`,
-
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(user),
-			}
-		)
+		fetch(`${BASE_URL}/users/${action}`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(user),
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.result) {
