@@ -57,7 +57,7 @@ export default function Login({ navigation }) {
 	}
 
 	const handleConnection = () => {
-		if (singnin) {
+		if (!singnin) {
 			return (
 				<>
 					<View style={styles.email}>

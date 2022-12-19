@@ -6,7 +6,7 @@ import Tags from "react-native-tags"
 import { useSelector } from "react-redux"
 import { IP_LOCAL } from "@env"
 
-export default function CreateAnnounce() {
+export default function CreateAnnounce({ navigation }) {
 	// permet de mettre un titre et de renseignner son URL
 	const BASE_URL = `http://${IP_LOCAL}:3000`
 	const [title, setTitle] = useState("")
@@ -45,9 +45,13 @@ export default function CreateAnnounce() {
 				})
 					.then((response) => response.json())
 					.then((data) => {
-						console.log(data)
+						if (data) {
+							navigation.navigate("Liste helperz")
+						}
 					})
 			})
+		// only for testing
+		navigation.navigate("Liste helperz")
 	}
 
 	return (
