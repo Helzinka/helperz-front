@@ -13,11 +13,17 @@ import Card from "../components/Card"
 import FilterModal from "../modals/Filter"
 import mongodb from "../data.json"
 // fake data mongodb
+import { IP_LOCAL } from "@env"
+import MapView, { Marker } from "react-native-maps"
+import { useSelector } from "react-redux"
 
 export default function Annonce({ navigation }) {
+	const BASE_URL = `http://${IP_LOCAL}:3000`
 	const [data, setData] = useState()
+	const [initLocation, setInitLocation] = useState({})
 	const [search, setSearch] = useState()
 	const [isModalVisible, setIsModalVisible] = useState(false)
+	const UserReducer = useSelector((state) => state.user.value)
 
 	// affiche la modal au click de l'icon "+"
 	const isVisible = () => {
@@ -30,7 +36,20 @@ export default function Annonce({ navigation }) {
 	}
 	// recupère les données à la création du composant depuis data.json
 	useEffect(() => {
-		setData(mongodb)
+		// on récupère la première annnonce depuusi le reducer user
+		let last = UserReducer.announces.length - 1
+		const [lat, long] = [
+			UserReducer.announces[last].location.lat,
+			UserReducer.announces[last].location.long,
+		]
+		setInitLocation({ lat: lat, long: long })
+		const announceLocation = UserReducer.announces[last].location.name
+		// on précise le lieu de l'annonce et on fetch tout les helperz sur la meme ville
+		fetch(`${BASE_URL}/users/helperz/${announceLocation}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setData(data)
+			})
 	}, [])
 
 	// fonction pour retourner toutes les helperz via le composant "Card"
@@ -46,6 +65,23 @@ export default function Annonce({ navigation }) {
 			))
 		}
 	}
+	const showmarker = () => {
+		if (data) {
+			return data.user.map((value, index) => {
+				const [lat, long] = [value.helperz.location.lat, value.helperz.location.long]
+				console.log(lat, long)
+				return (
+					<Marker
+						key={index}
+						pinColor="red"
+						coordinate={{ latitude: lat, longitude: long }}
+						title={value.username}
+					></Marker>
+				)
+			})
+		}
+	}
+
 	return (
 		<>
 			<View style={styles.container}>
@@ -76,6 +112,19 @@ export default function Annonce({ navigation }) {
 					</ScrollView>
 				</View>
 			</View>
+			{initLocation && (
+				<MapView
+					region={{
+						latitude: initLocation.lat,
+						longitude: initLocation.long,
+						latitudeDelta: 0.0922,
+						longitudeDelta: 0.0421,
+					}}
+					style={styles.mapView}
+				>
+					{showmarker()}
+				</MapView>
+			)}
 			<View style={styles.announces}>{showAnnounce()}</View>
 			<FilterModal
 				isVisible={isModalVisible}
@@ -117,5 +166,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		marginTop: 20,
+	},
+	mapView: {
+		flex: 2,
+		height: "100%",
 	},
 })

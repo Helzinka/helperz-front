@@ -1,10 +1,10 @@
 import React from "react"
 import { useState, useRef } from "react"
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import Checkbox from "expo-checkbox"
 import Tags from "react-native-tags"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { IP_LOCAL } from "@env"
+import { addAnnouncesToUser } from "../reducers/user"
 
 export default function CreateAnnounce({ navigation }) {
 	// permet de mettre un titre et de renseignner son URL
@@ -16,6 +16,7 @@ export default function CreateAnnounce({ navigation }) {
 	const [tag, setTag] = useState([])
 	const [city, setCity] = useState()
 	const UserReducer = useSelector((state) => state.user.value)
+	const dispatch = useDispatch()
 
 	const handleSubmit = () => {
 		fetch(`https://api-adresse.data.gouv.fr/search/?q=${city}`)
@@ -46,12 +47,13 @@ export default function CreateAnnounce({ navigation }) {
 					.then((response) => response.json())
 					.then((data) => {
 						if (data) {
+							dispatch(addAnnouncesToUser(data))
 							navigation.navigate("Liste helperz")
 						}
 					})
 			})
 		// only for testing
-		navigation.navigate("Liste helperz")
+		// navigation.navigate("Liste helperz")
 	}
 
 	return (

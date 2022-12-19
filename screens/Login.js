@@ -1,12 +1,19 @@
 import { useState } from "react"
-import { Text, StyleSheet, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native"
+import {
+	Text,
+	StyleSheet,
+	View,
+	TextInput,
+	TouchableOpacity,
+	KeyboardAvoidingView,
+} from "react-native"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { useDispatch, useSelector } from "react-redux"
 
 // import * as Google from "expo-auth-session/providers/google"
 import { IP_LOCAL } from "@env"
-import { sign } from "../reducers/user"
+import { sign, addAllAnnounces } from "../reducers/user"
 
 export default function Login({ navigation }) {
 	//mettre votre ip dans .env
@@ -19,18 +26,8 @@ export default function Login({ navigation }) {
 	const [username, setUsername] = useState("")
 
 	const dispatch = useDispatch()
+	// const user = useSelector((state) => state.user.value)
 
-	// connection à google
-	// const [request, response, promptAsync] = Google.useAuthRequest({
-	// 	expoClientId: GOOGLE_ID,
-	// })
-
-	// effet de bord pour google connection
-	// useEffect(() => {
-	// 	if (response?.type === "success") {
-	// 		const { authentication } = response
-	// 	}
-	// }, [response])
 	const handleSubmit = (action) => {
 		let user = {
 			password: password,
@@ -48,10 +45,18 @@ export default function Login({ navigation }) {
 			.then((data) => {
 				if (data.result) {
 					dispatch(sign(data.user))
-					navigation.navigate("Liste annonces")
 					setEmail("")
 					setPassword("")
 					setUsername("")
+					const userToken = data.user.token
+					return fetch(`${BASE_URL}/users/announces/${userToken}`)
+						.then((response) => response.json())
+						.then((data) => {
+							if (data.result) {
+								dispatch(addAllAnnounces(data.announces))
+								navigation.navigate("Créer une annonce")
+							}
+						})
 				}
 			})
 	}

@@ -11,7 +11,10 @@ export const userSlice = createSlice({
 		sign: (state, action) => {
 			state.value.user = action.payload
 		},
-		addUsersAnnounces: (state, action) => {
+		addAllAnnounces: (state, action) => {
+			state.value.announces = action.payload
+		},
+		addAnnouncesToUser: (state, action) => {
 			state.value.announces.push(action.payload)
 		},
 		removeUsersAnnounces: (state, action) => {
@@ -20,5 +23,5 @@ export const userSlice = createSlice({
 	},
 })
 
-export const { sign, addUsersAnnounces, removeUsersAnnounces } = userSlice.actions
+export const { sign, addUsersAnnounces, removeUsersAnnounces, addAllAnnounces } = userSlice.actions
 export default userSlice.reducer
