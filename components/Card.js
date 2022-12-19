@@ -39,22 +39,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "80%",
     marginBottom: 10,
+    backgroundColor: "white",
   },
   imageCard: {
     height: 50,
     width: 50,
+    backgroundColor: "white",
   },
   content: {
     padding: 10,
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "white",
   },
   title: {
     fontSize: 26,
     color: "#616161",
+    backgroundColor: "white",
   },
   descritption: {
     fontSize: 12,
     color: "#8e8e8e",
+    backgroundColor: "white",
   },
 });

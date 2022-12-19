@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faShop, user } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -20,17 +22,19 @@ export default function HomeScreen({ navigation }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Créer une annonce")}
         >
+          {/* <FontAwesomeIcon
+            icon={faShop}
+            size={50}
+            color={"red"}
+          ></FontAwesomeIcon> */}
           <Image
-            source={require("../assets/buy.jpg")}
+            source={require("../assets/annonce.png")}
             style={styles.imageCard}
           />
           <View style={styles.textCard}>
-            <Text style={styles.titreCard}>
-              Vous êtes sur le point de faire un achat ?
-            </Text>
+            <Text style={styles.titreCard}>Créez une annonce</Text>
             <Text style={styles.textContent}>
-              Créez une annonce dès maintenant afin de trouver un.e Helperz qui
-              vous accompagnera lors de votre achat
+              Trouvez un.e Helperz qui vous accompagnera lors de votre achat
             </Text>
           </View>
         </TouchableOpacity>
@@ -41,15 +45,13 @@ export default function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Liste helperz")}
         >
           <Image
-            source={require("../assets/help.jpg")}
+            source={require("../assets/trouver.png")}
             style={styles.imageCard}
           />
           <View style={styles.textCard}>
-            <Text style={styles.titreCard}>
-              Trouvez un Helperz proche de votre annonce
-            </Text>
+            <Text style={styles.titreCard}>Trouvez un Helperz</Text>
             <Text style={styles.textContent}>
-              Faites vous accompagner par un de nos nombreux Helperz certifié
+              Nous vous mettons en relation avec des experts pour vos achats
             </Text>
           </View>
         </TouchableOpacity>
@@ -60,16 +62,13 @@ export default function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Liste annonces")}
         >
           <Image
-            source={require("../assets/expert.jpg")}
+            source={require("../assets/money.png")}
             style={styles.imageCard}
           />
           <View style={styles.textCard}>
-            <Text style={styles.titreCard}>
-              Faites vous rémunérer pour votre expertise
-            </Text>
+            <Text style={styles.titreCard}>Faites vous rémunérer</Text>
             <Text style={styles.textContent}>
-              Donnez un coup de main pour aider quelqu'un à ne pas se tromper
-              sur son prochain achat
+              Gagnez de l'argent dès que vous réalisez une mission
             </Text>
           </View>
         </TouchableOpacity>
@@ -84,9 +83,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   carrousel: {
-    flex: 1.5,
+    flex: 1.9,
     width: "100%",
-    height: "40%",
+    height: "50%",
   },
   content: {
     flex: 3,
@@ -112,11 +111,13 @@ const styles = StyleSheet.create({
   imageCard: {
     width: "30%",
     height: "100%",
-    borderRadius: 10,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
   },
   textCard: {
     backgroundColor: "#00C6A0",
-    borderRadius: 10,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
     // borderWidth: 2,
     // borderColor: "#00C6A0",
     width: "68%",
@@ -128,11 +129,11 @@ const styles = StyleSheet.create({
   },
   titreCard: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 22,
     color: "white",
   },
   textContent: {
-    fontSize: 12,
+    fontSize: 14,
     color: "white",
   },
 });
