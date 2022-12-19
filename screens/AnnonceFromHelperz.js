@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Pressable,
+  Image,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Calendar from "../components/Calendar";
@@ -14,16 +15,18 @@ export default function AnnonceFromHelperz() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profilContainer}>
-        <View style={styles.photoContainer}>
-          <TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
-            <FontAwesome name="user" size={50} color={"black"} />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text>Prénom:</Text>
-          <Text>Ville:</Text>
+        <Image
+          source={require("../assets/profil1.jpg")}
+          style={styles.imageCard}
+        />
+        <View style={styles.profilText}>
+          <Text>Julie</Text>
+          <Text>Bordeaux</Text>
           <Text>Notation:</Text>
-          <Text>Bio:</Text>
+          <Text>
+            Experte dans le domain immobilier. Ancienne agent immobilier durant
+            15 ans sur Bordeaux et ses alentours.
+          </Text>
         </View>
       </View>
 
@@ -63,29 +66,32 @@ export default function AnnonceFromHelperz() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white",
   },
   profilContainer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
+  },
+  profilText: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "space-around",
+    width: "60%",
   },
   photoContainer: {
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  avatar: {
-    width: 100,
-    height: 100,
+  imageCard: {
+    width: "30%",
+    height: "80%",
     borderRadius: 90,
-    borderWidth: 3,
-    borderColor: "#006EFF",
-    backgroundColor: "#006EFF",
-    justifyContent: "space-evenly",
-    alignItems: "center",
   },
   tagContainer: {
     flex: 0.3,
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   calendarContainer: {
-    flex: 2.5,
+    flex: 2,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
