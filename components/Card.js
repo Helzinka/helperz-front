@@ -7,15 +7,16 @@ export default function Card({ data, type }) {
     return (
       <TouchableOpacity style={styles.card}>
         <Image
-          source={require("../assets/Logo-Full-Black.png")}
+          source={require("../assets/profil2.jpg")}
           style={styles.imageCard}
         />
         <View style={styles.content}>
-          <Text style={styles.username}>{data.username}</Text>
-          <Text style={styles.lastname}>{data.lastname}</Text>
+          <View style={styles.helperzName}>
+            <Text style={styles.username}>{data.username} </Text>
+            <Text style={styles.lastname}> {data.lastname}</Text>
+          </View>
           <Text style={styles.location}>
-            {" "}
-            lieu : {data.helperz.location.name}
+            Lieu : {data.helperz.location.name}
           </Text>
         </View>
       </TouchableOpacity>
@@ -24,7 +25,7 @@ export default function Card({ data, type }) {
     return (
       <TouchableOpacity style={styles.card}>
         <Image
-          source={require("../assets/Logo-Full-Black.png")}
+          source={require("../assets/profil2.jpg")}
           style={styles.imageCard}
         />
         <View style={styles.content}>
@@ -40,30 +41,42 @@ const styles = StyleSheet.create({
   card: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
-    width: "80%",
-    marginBottom: 10,
-    backgroundColor: "white",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    width: "90%",
+    marginBottom: 20,
   },
   imageCard: {
-    height: 50,
-    width: 50,
-    backgroundColor: "white",
+    height: 80,
+    width: 80,
+    borderRadius: 90,
+    marginRight: 15,
   },
   content: {
-    padding: 10,
-    display: "flex",
+    // padding: 10,
+    flex: 1,
     flexDirection: "column",
-    backgroundColor: "white",
   },
   title: {
-    fontSize: 26,
-    color: "#616161",
-    backgroundColor: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
   },
   descritption: {
     fontSize: 12,
-    color: "#8e8e8e",
-    backgroundColor: "white",
+    color: "black",
   },
+  helperzName: {
+    flexDirection: "row",
+  },
+  username: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+  },
+  lastname: {
+    fontSize: 20,
+    color: "black",
+  },
+  location: {},
 });

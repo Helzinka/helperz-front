@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Calendar from "../components/Calendar";
 
-export default function AnnonceFromHelperz() {
+export default function AnnonceFromHelperz({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profilContainer}>
@@ -21,20 +21,25 @@ export default function AnnonceFromHelperz() {
           style={styles.imageCard}
         />
         <View style={styles.profilText}>
-          <Text style={styles.textBio}>Julie</Text>
-          <Text>Bordeaux</Text>
-          <Text>
-            Notation: 4.2/5 (
-            <FontAwesomeIcon
-              icon={faStar}
-              size={12}
-              color="#FFD700"
-            ></FontAwesomeIcon>
-            )
-          </Text>
-          <Text>
-            Experte dans le domain immobilier. Ancienne agent immobilier durant
-            15 ans sur Bordeaux et ses alentours.
+          <View style={styles.headerProfil}>
+            <Text style={styles.textBio}>Julie</Text>
+            <Text style={styles.textBio}>-</Text>
+            <Text style={styles.textBio}>Bordeaux</Text>
+          </View>
+          <View style={styles.notationContainer}>
+            <Text style={styles.notation}>
+              Notes: 4.5/5 (
+              <FontAwesomeIcon
+                icon={faStar}
+                size={12}
+                color="#FFD700"
+              ></FontAwesomeIcon>
+              )
+            </Text>
+          </View>
+          <Text style={styles.descriptionText}>
+            "Experte dans le domain immobilier. Ancienne agent immobilier durant
+            15 ans sur Bordeaux et ses alentours."
           </Text>
         </View>
       </View>
@@ -64,7 +69,10 @@ export default function AnnonceFromHelperz() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonValidate}>
+        <TouchableOpacity
+          style={styles.buttonValidate}
+          onPress={() => navigation.navigate("Messagerie")}
+        >
           <Text style={styles.textValidate}>Contacter</Text>
         </TouchableOpacity>
       </View>
@@ -85,16 +93,42 @@ const styles = StyleSheet.create({
   },
   profilText: {
     flexDirection: "column",
-    width: "60%",
+    justifyContent: "space-around",
+    width: "65%",
+    padding: 15,
+  },
+  headerProfil: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    margin: 5,
+  },
+  textBio: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  notationContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+  },
+  notation: {
+    fontSize: 16,
+  },
+  descriptionText: {
+    fontSize: 13,
+    margin: 5,
+    fontStyle: "italic",
   },
   photoContainer: {
     justifyContent: "space-evenly",
     alignItems: "center",
   },
   imageCard: {
-    width: "30%",
+    width: "27%",
     height: "75%",
     borderRadius: 100,
+    marginLeft: 9,
   },
   textFilter: {
     fontSize: 12,
@@ -117,7 +151,7 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   calendarContainer: {
-    flex: 2,
+    flex: 2.5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

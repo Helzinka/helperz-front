@@ -61,40 +61,49 @@ export default function Annonce({ navigation }) {
           </TouchableOpacity>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Pressable style={styles.filter}>
-              <Text>date</Text>
+              <Text>Paris</Text>
             </Pressable>
             <Pressable style={styles.filter}>
-              <Text>tag</Text>
+              <Text>Date</Text>
             </Pressable>
           </ScrollView>
         </View>
       </View>
-      <View style={styles.announces}>{showAnnounce()}</View>
-      <FilterModal
-        isVisible={isModalVisible}
-        onClose={() => onClose()}
-      ></FilterModal>
+      <ScrollView style={styles.ScrollView}>
+        <View style={styles.announces}>{showAnnounce()}</View>
+        <FilterModal
+          isVisible={isModalVisible}
+          onClose={() => onClose()}
+        ></FilterModal>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    backgroundColor: "white",
+  },
   search: {
     alignSelf: "center",
-    width: "70%",
+    width: "85%",
     padding: 10,
     margin: 10,
-    borderWidth: 1,
-    borderColor: "grey",
+    borderRadius: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderColor: "#00C6A0",
+    borderWidth: 3,
   },
   filters: {
-    margin: 10,
-    display: "flex",
+    margin: 15,
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "white",
   },
   filter: {
-    backgroundColor: "#616161",
+    backgroundColor: "#00C6A0",
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 8,
@@ -109,6 +118,9 @@ const styles = StyleSheet.create({
   announces: {
     flex: 1,
     alignItems: "center",
-    marginTop: 20,
+    backgroundColor: "white",
+  },
+  ScrollView: {
+    backgroundColor: "white",
   },
 });
