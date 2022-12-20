@@ -65,6 +65,22 @@ export default function Annonce({ navigation }) {
 			))
 		}
 	}
+	const showFitlerAnnonce = () => {
+		if (data) {
+			let last = UserReducer.announces.length - 1
+			const announceLocation = UserReducer.announces[last].location.name
+			return UserReducer.announces[last].tag.map((e, i) => {
+				return (
+					<Text
+						key={i}
+						style={styles.filter}
+					>
+						{e}
+					</Text>
+				)
+			})
+		}
+	}
 	const showmarker = () => {
 		if (data) {
 			return data.user.map((value, index) => {
@@ -102,12 +118,7 @@ export default function Annonce({ navigation }) {
 						horizontal={true}
 						showsHorizontalScrollIndicator={false}
 					>
-						<Pressable style={styles.filter}>
-							<Text>Paris</Text>
-						</Pressable>
-						<Pressable style={styles.filter}>
-							<Text>Date</Text>
-						</Pressable>
+						{showFitlerAnnonce()}
 					</ScrollView>
 				</View>
 			</View>
@@ -175,7 +186,7 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 	},
 	mapView: {
-		flex: 2,
+		flex: 1,
 		height: "100%",
 	},
 })
