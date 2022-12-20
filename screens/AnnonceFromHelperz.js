@@ -8,7 +8,8 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Calendar from "../components/Calendar";
 
 export default function AnnonceFromHelperz() {
@@ -20,9 +21,17 @@ export default function AnnonceFromHelperz() {
           style={styles.imageCard}
         />
         <View style={styles.profilText}>
-          <Text>Julie</Text>
+          <Text style={styles.textBio}>Julie</Text>
           <Text>Bordeaux</Text>
-          <Text>Notation:</Text>
+          <Text>
+            Notation: 4.2/5 (
+            <FontAwesomeIcon
+              icon={faStar}
+              size={12}
+              color="#FFD700"
+            ></FontAwesomeIcon>
+            )
+          </Text>
           <Text>
             Experte dans le domain immobilier. Ancienne agent immobilier durant
             15 ans sur Bordeaux et ses alentours.
@@ -33,19 +42,19 @@ export default function AnnonceFromHelperz() {
       <View style={styles.tagContainer}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-            <Text>Disponibilités</Text>
+            <Text style={styles.textFilter}>Disponibilités</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-            <Text>Localisation</Text>
+            <Text style={styles.textFilter}>Localisation</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-            <Text>Prix</Text>
+            <Text style={styles.textFilter}>Prix</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-            <Text>Avis</Text>
+            <Text style={styles.textFilter}>Avis</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-            <Text>Missions</Text>
+            <Text style={styles.textFilter}>Missions</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -76,8 +85,6 @@ const styles = StyleSheet.create({
   },
   profilText: {
     flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "space-around",
     width: "60%",
   },
   photoContainer: {
@@ -86,24 +93,28 @@ const styles = StyleSheet.create({
   },
   imageCard: {
     width: "30%",
-    height: "80%",
-    borderRadius: 90,
+    height: "75%",
+    borderRadius: 100,
+  },
+  textFilter: {
+    fontSize: 12,
   },
   tagContainer: {
     flex: 0.3,
+    fontSize: 12,
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
   filter: {
-    width: "40%",
+    width: "30%",
     height: "80%",
     backgroundColor: "#00C6A0",
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "space-evenly",
-    margin: 5,
+    margin: 4,
   },
   calendarContainer: {
     flex: 2,
@@ -121,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#006EFF",
     borderRadius: 15,
     width: "90%",
-    height: "30%",
+    height: "25%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
