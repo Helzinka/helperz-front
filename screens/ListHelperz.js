@@ -91,6 +91,9 @@ export default function Annonce({ navigation }) {
 						pinColor="red"
 						coordinate={{ latitude: lat, longitude: long }}
 						title={value.username}
+						onPress={(e) =>
+							navigation.navigate("Profil Helperz", { user: value.token })
+						}
 					></Marker>
 				)
 			})
