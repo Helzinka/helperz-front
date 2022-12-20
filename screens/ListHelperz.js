@@ -91,9 +91,6 @@ export default function Annonce({ navigation }) {
 						pinColor="red"
 						coordinate={{ latitude: lat, longitude: long }}
 						title={value.username}
-						onPress={(e) =>
-							navigation.navigate("Profil Helperz", { user: value.token })
-						}
 					></Marker>
 				)
 			})
@@ -186,10 +183,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		backgroundColor: "white",
-		marginTop: 20,
 	},
 	mapView: {
-		flex: 1,
+		flex: 2,
 		height: "100%",
 	},
 })
