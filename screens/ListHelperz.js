@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 	},
 	mapView: {
-		flex: 2,
+		flex: 1,
 		height: "100%",
 	},
 })
