@@ -24,7 +24,7 @@ export default function AnnonceFromHelperz() {
           <Text style={styles.textBio}>Julie</Text>
           <Text>Bordeaux</Text>
           <Text>
-            Notation: 4.2/5 (
+            Notation: 4.5/5 (
             <FontAwesomeIcon
               icon={faStar}
               size={12}
