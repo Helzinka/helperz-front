@@ -2,12 +2,12 @@
   "announce": [
     {
       "id": "1",
-      "title": "Achat moto bmw Var",
+      "title": "Travaux pour appartement 30m2",
       "url": "https://ebay.com/moto",
       "tag": ["vehicule", "moto"],
       "price": "200",
       "type": "Help",
-      "descritption": "Je demande une vérification de cette moto en lien situé dans le Var. Le prix est négociable.",
+      "descritption": "Je recheche une personne pour expertiser un appartement avant travaux",
       "userOwner": {
         "clientId": "1",
         "surname": "John",
@@ -28,12 +28,12 @@
     },
     {
       "id": "2",
-      "title": "conseille cable hdm",
+      "title": "Conseil pour produit informatique",
       "url": "https://ebay.com/hdmi",
       "tag": ["cable"],
       "price": "0",
       "type": "advise",
-      "descritption": "Je demande une vérification de cette moto en lien situer dans le Var. Le prix peut varier en fonction.",
+      "descritption": "Je cherche une personne qui pourrait me renseigner sur un futur achat informatique",
       "userOwner": {
         "clientId": "1",
         "surname": "Jhon",
@@ -47,19 +47,19 @@
             "surname": "Jane",
             "Lastname": "Fritz"
           },
-          "message": "je peu me déplacer",
+          "message": "je peux me déplacer",
           "date": "2022/10/01 08:02:23"
         }
       ]
     },
     {
       "id": "1",
-      "title": "Achat moto bmw Var",
+      "title": "Achat moto BMW Var",
       "url": "https://ebay.com/moto",
       "tag": ["vehicule", "moto"],
       "price": "200",
       "type": "Help",
-      "descritption": "Je demande une vérification de cette moto en lien situer dans le Var. Le prix peut varier en fonction.",
+      "descritption": "Je demande une vérification d'une moto BMW située dans le Var",
       "userOwner": {
         "clientId": "1",
         "surname": "Jhon",
