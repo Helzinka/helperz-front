@@ -69,11 +69,13 @@ export default function Annonce({ navigation }) {
           </ScrollView>
         </View>
       </View>
-      <View style={styles.announces}>{showAnnounce()}</View>
-      <FilterModal
-        isVisible={isModalVisible}
-        onClose={() => onClose()}
-      ></FilterModal>
+      <ScrollView style={styles.ScrollView}>
+        <View style={styles.announces}>{showAnnounce()}</View>
+        <FilterModal
+          isVisible={isModalVisible}
+          onClose={() => onClose()}
+        ></FilterModal>
+      </ScrollView>
     </>
   );
 }
@@ -116,6 +118,9 @@ const styles = StyleSheet.create({
   announces: {
     flex: 1,
     alignItems: "center",
+    backgroundColor: "white",
+  },
+  ScrollView: {
     backgroundColor: "white",
   },
 });
