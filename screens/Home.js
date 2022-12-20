@@ -1,8 +1,40 @@
+import { useEffect } from "react"
 import { SafeAreaView, StyleSheet, Image, View, TouchableOpacity, Text } from "react-native"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { IP_LOCAL } from "@env"
+import { sign, addAllAnnounces } from "../reducers/user"
 
 export default function HomeScreen({ navigation }) {
+	const dispatch = useDispatch()
 	const userReducer = useSelector((state) => state.user.value)
+	const BASE_URL = `http://${IP_LOCAL}:3000`
+
+	// auto log with test user
+	useEffect(() => {
+		fetch(`${BASE_URL}/users/signin`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: "Test@test.com",
+				password: "toto",
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.result) {
+					dispatch(sign(data.user))
+					const userToken = data.user.token
+					return fetch(`${BASE_URL}/users/announces/${userToken}`)
+						.then((response) => response.json())
+						.then((data) => {
+							if (data.result) {
+								dispatch(addAllAnnounces(data.announces))
+							}
+						})
+				}
+			})
+	}, [])
+
 	const handleLogin = () => {
 		if (userReducer.user.token) {
 			navigation.navigate("Créer une annonce")

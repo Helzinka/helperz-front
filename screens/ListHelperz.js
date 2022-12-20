@@ -34,22 +34,22 @@ export default function Annonce({ navigation }) {
 	const onClose = () => {
 		setIsModalVisible(!isModalVisible)
 	}
-	// recupère les données à la création du composant depuis data.json
 	useEffect(() => {
-		// on récupère la première annnonce depuis le reducer user
-		let last = UserReducer.announces.length - 1
-		const [lat, long] = [
-			UserReducer.announces[last].location.lat,
-			UserReducer.announces[last].location.long,
-		]
-		setInitLocation({ lat: lat, long: long })
-		const announceLocation = UserReducer.announces[last].location.name
-		// on précise le lieu de l'annonce et on fetch tout les helperz sur la meme ville
-		fetch(`${BASE_URL}/users/helperz/${announceLocation}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setData(data)
+		if (UserReducer.user.token) {
+			// on récupère la dernière annnonce depuis le reducer user
+			let last = UserReducer.announces.length - 1
+			setInitLocation({
+				lat: UserReducer.announces[last].location.lat,
+				long: UserReducer.announces[last].location.long,
 			})
+			const announceLocation = UserReducer.announces[last].location.name
+			// on précise le lieu de l'annonce et on fetch tout les helperz sur la meme ville
+			fetch(`${BASE_URL}/users/helperz/${announceLocation}`)
+				.then((response) => response.json())
+				.then((data) => {
+					setData(data)
+				})
+		}
 	}, [])
 
 	// fonction pour retourner toutes les helperz via le composant "Card"
