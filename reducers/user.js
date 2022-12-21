@@ -23,5 +23,5 @@ export const userSlice = createSlice({
 	},
 })
 
-export const { sign, addUsersAnnounces, removeUsersAnnounces, addAllAnnounces } = userSlice.actions
+export const { sign, addAnnouncesToUser, removeUsersAnnounces, addAllAnnounces } = userSlice.actions
 export default userSlice.reducer
