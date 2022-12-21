@@ -28,7 +28,6 @@ export default function HomeScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.result) {
           dispatch(sign(data.user));
           const userToken = data.user.token;

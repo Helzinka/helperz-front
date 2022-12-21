@@ -5,55 +5,66 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { useEffect, useState } from "react";
+import { IP_LOCAL } from "@env";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export default function AnnonceRecap() {
+export default function AnnonceRecap({ navigation, route }) {
+  const BASE_URL = `http://${IP_LOCAL}:3000`;
+
+  const [data, setData] = useState();
+
+  // recupère les données à l'ouverture de la page depuis data.json sans filtre location
+  useEffect(() => {
+    fetch(`${BASE_URL}/announces/${route.params.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        let date = new Date(data.data.createdAt);
+        let test = date.toLocaleDateString("fr-FR");
+        data.data.createdAt = test;
+        setData(data);
+      });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.validationContainer}>
-        <Text style={styles.titrePage}>Statut de la mission</Text>
-        <View style={styles.buttonValidate}>
-          <Text style={styles.textValidate}>Validé</Text>
-        </View>
-      </View>
-
-      <View style={styles.recapMission}>
-        <Text style={styles.titreAnnonce}>Titre de l'annonce</Text>
-        <Text style={styles.textAnnonce}>
-          Lorem ipsum dolor sit amet. In atque quia ut dignissimos quasi est
-          vero placeat ut consectetur animi non galisum doloremque vel unde
-          velit. Id galisum quod quo similique minus qui sunt sint eum debitis
-          impedit 33 necessitatibus itaque 33 voluptates laboriosam et neque
-          inventore.
-        </Text>
-      </View>
-
-      <View style={styles.profilContainer}>
-        <View style={styles.photo}>
-          <TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
-            <FontAwesome name="user" size={50} color={"white"} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.profil}>
-          <Text style={styles.nomHelperz}>Nom Helperz</Text>
-          <View style={styles.notation}>
-            <FontAwesome name="star" size={20} color={"#f1c40f"} />
-            <FontAwesome name="star" size={20} color={"#f1c40f"} />
-            <FontAwesome name="star" size={20} color={"#f1c40f"} />
-            <FontAwesome name="star" size={20} color={"#f1c40f"} />
-            <FontAwesome name="star" size={20} color={"#f1c40f"} />
+      {data && (
+        <>
+          <View style={styles.validationContainer}>
+            <Text style={styles.titrePage}>Statut de la mission</Text>
+            <View style={styles.buttonValidate}>
+              <Text style={styles.textValidate}>Validé</Text>
+            </View>
           </View>
-        </View>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <View style={styles.price}>
-          <Text style={styles.text}>50€</Text>
-        </View>
-        <View style={styles.calendar}>
-          <Text style={styles.text}>23/12/2022</Text>
-        </View>
-      </View>
+          <View style={styles.recapMission}>
+            <Text style={styles.titreAnnonce}>{data.data.title}</Text>
+            <Text style={styles.textAnnonce}>{data.data.description}</Text>
+          </View>
+
+          <View style={styles.profilContainer}>
+            <View style={styles.photo}>
+              <TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
+                <FontAwesome name="user" size={50} color={"white"} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.profil}>
+              <Text style={styles.nomHelperz}>
+                {data.data.userOwner.username}
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <View style={styles.price}>
+              <Text style={styles.text}>{data.data.price}€</Text>
+            </View>
+            <View style={styles.calendar}>
+              <Text style={styles.text}>{data.data.createdAt}</Text>
+            </View>
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 }
