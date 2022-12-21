@@ -67,7 +67,7 @@ export default function Annonce({ navigation }) {
 			const announceLocation = UserReducer.announces[last].location.name;
 			return UserReducer.announces[last].tag.map((e, i) => {
 				return (
-					<View style={styles.filter}>
+					<View key={i} style={styles.filter}>
 						<Text key={i}>{e}</Text>
 					</View>
 				);
