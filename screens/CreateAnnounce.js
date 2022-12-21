@@ -1,30 +1,30 @@
-import React from "react"
-import { useState, useRef } from "react"
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
-import Tags from "react-native-tags"
-import { useSelector, useDispatch } from "react-redux"
-import { IP_LOCAL } from "@env"
-import { addAnnouncesToUser } from "../reducers/user"
+import React from "react";
+import { useState, useRef } from "react";
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import Tags from "react-native-tags";
+import { useSelector, useDispatch } from "react-redux";
+import { IP_LOCAL } from "@env";
+import { addAnnouncesToUser } from "../reducers/user";
 
 export default function CreateAnnounce({ navigation }) {
 	// permet de mettre un titre et de renseignner son URL
-	const BASE_URL = `http://${IP_LOCAL}:3000`
-	const [title, setTitle] = useState("")
-	const [url, setUrl] = useState("")
-	const [price, setPrice] = useState("")
-	const [description, setDescription] = useState("")
-	const [tag, setTag] = useState([])
-	const [city, setCity] = useState()
-	const UserReducer = useSelector((state) => state.user.value)
-	const dispatch = useDispatch()
+	const BASE_URL = `http://${IP_LOCAL}:3000`;
+	const [title, setTitle] = useState("");
+	const [url, setUrl] = useState("");
+	const [price, setPrice] = useState("");
+	const [description, setDescription] = useState("");
+	const [tag, setTag] = useState([]);
+	const [city, setCity] = useState();
+	const UserReducer = useSelector((state) => state.user.value);
+	const dispatch = useDispatch();
 
 	const handleSubmit = () => {
 		fetch(`https://api-adresse.data.gouv.fr/search/?q=${city}`)
 			.then((response) => response.json())
 			.then((data) => {
-				let infos = {}
+				let infos = {};
 				if (data) {
-					let firstCity = data.features[0]
+					let firstCity = data.features[0];
 					infos = {
 						title: title,
 						url: url,
@@ -40,7 +40,7 @@ export default function CreateAnnounce({ navigation }) {
 							lat: firstCity.geometry.coordinates[1],
 							long: firstCity.geometry.coordinates[0],
 						},
-					}
+					};
 				}
 				return fetch(`${BASE_URL}/announces`, {
 					method: "POST",
@@ -50,14 +50,14 @@ export default function CreateAnnounce({ navigation }) {
 					.then((response) => response.json())
 					.then((data) => {
 						if (data.result) {
-							dispatch(addAnnouncesToUser(data.announces))
-							navigation.navigate("Liste helperz")
+							dispatch(addAnnouncesToUser(data.announces));
+							navigation.navigate("Liste helperz");
 						}
-					})
-			})
+					});
+			});
 		// only for testing
-		// navigation.navigate("Liste helperz")
-	}
+		navigation.navigate("Liste helperz");
+	};
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -107,10 +107,7 @@ export default function CreateAnnounce({ navigation }) {
 					}}
 					style={styles.tagContainer}
 					renderTag={({ tag, index, onPress, deleteTagOnPress, readonly }) => (
-						<TouchableOpacity
-							key={`${tag}-${index}`}
-							onPress={onPress}
-						>
+						<TouchableOpacity key={`${tag}-${index}`} onPress={onPress}>
 							<View style={styles.tag}>
 								<Text>{tag}</Text>
 							</View>
@@ -127,7 +124,7 @@ export default function CreateAnnounce({ navigation }) {
 				<Text style={styles.valider}>Valider</Text>
 			</TouchableOpacity>
 		</SafeAreaView>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -182,4 +179,4 @@ const styles = StyleSheet.create({
 		backgroundColor: "#00C6A0",
 		borderRadius: 10,
 	},
-})
+});
