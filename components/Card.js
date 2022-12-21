@@ -6,7 +6,7 @@ export default function Card({ data, type, navigation }) {
   if (type === "helperz") {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate("Profil Helperz", { user: data })}
+        onPress={() => navigation.navigate("Helperz", { user: data })}
         style={styles.card}
       >
         <Image
@@ -29,7 +29,7 @@ export default function Card({ data, type, navigation }) {
     return (
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("Mes annonces", { id: data._id })}
+        onPress={() => navigation.navigate("Annonce", { id: data._id })}
       >
         <Image
           source={require("../assets/profil2.jpg")}

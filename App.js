@@ -7,18 +7,18 @@ import { StyleSheet } from "react-native";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { StripeProvider } from "@stripe/stripe-react-native";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import AnnonceRecap from "./screens/AnnonceRecap";
+import Accueil from "./screens/Accueil";
+import Connexion from "./screens/Connexion";
+import AnnonceValidee from "./screens/AnnonceValidee";
 import Header from "./components/Header";
-import CreateAnnounce from "./screens/CreateAnnounce";
-import Profil from "./screens/Profil";
-import PageAnnonce from "./screens/PageAnnonce";
-import ListAnnounce from "./screens/ListAnnounce";
-import AnnonceFromHelperz from "./screens/AnnonceFromHelperz";
-import MesMessages from "./screens/listMessages";
-import ListHelperz from "./screens/ListHelperz";
-import Payment from "./screens/Payment";
+import CreationAnnonce from "./screens/CreationAnnonce";
+import MonProfil from "./screens/MonProfil";
+import Annonce from "./screens/Annonce";
+import ListeAnnonce from "./screens/ListeAnnonce";
+import ListeHelperz from "./screens/ListeHelperz";
+import BoiteReception from "./screens/BoiteReception";
+import Helperz from "./screens/Helperz";
+import PagePaiement from "./screens/PagePaiement";
 import Messagerie from "./screens/Messagerie";
 
 import { Provider } from "react-redux";
@@ -44,17 +44,17 @@ const DrawerNavigator = () => {
         drawerPosition: "right", // Positionne le menu à droite
       }}
     >
-      <Drawer.Screen name="Accueil" component={Home} />
-      <Drawer.Screen name="Créer une annonce" component={CreateAnnounce} />
-      <Drawer.Screen name="Mon profil" component={Profil} />
-      <Drawer.Screen name="Se connecter" component={Login} />
-      <Drawer.Screen name="Annonces validées" component={AnnonceRecap} />
-      <Drawer.Screen name="Mes annonces" component={PageAnnonce} />
-      <Drawer.Screen name="Liste annonces" component={ListAnnounce} />
-      <Drawer.Screen name="Profil Helperz" component={AnnonceFromHelperz} />
-      <Drawer.Screen name="Mes Messages" component={MesMessages} />
-      <Drawer.Screen name="Liste helperz" component={ListHelperz} />
-      <Drawer.Screen name="Paiement" component={Payment} />
+      <Drawer.Screen name="Accueil" component={Accueil} />
+      <Drawer.Screen name="Création annonce" component={CreationAnnonce} />
+      <Drawer.Screen name="Mon profil" component={MonProfil} />
+      <Drawer.Screen name="Connexion" component={Connexion} />
+      <Drawer.Screen name="Annonces validées" component={AnnonceValidee} />
+      <Drawer.Screen name="Annonce" component={Annonce} />
+      <Drawer.Screen name="Liste des annonces" component={ListeAnnonce} />
+      <Drawer.Screen name="Liste des Helperz" component={ListeHelperz} />
+      <Drawer.Screen name="Boite de réception" component={BoiteReception} />
+      <Drawer.Screen name="Helperz" component={Helperz} />
+      <Drawer.Screen name="Page de paiement" component={PagePaiement} />
       <Drawer.Screen name="Messagerie" component={Messagerie} />
     </Drawer.Navigator>
   );
