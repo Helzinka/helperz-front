@@ -2,10 +2,13 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 // accès à props "data" directement grace à la destructuration
 // si type == "helperz" affiche la card helperz, sinon annonces
-export default function Card({ data, type }) {
+export default function Card({ data, type, navigation }) {
   if (type === "helperz") {
     return (
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Profil Helperz")}
+        style={styles.card}
+      >
         <Image
           source={require("../assets/profil2.jpg")}
           style={styles.imageCard}
