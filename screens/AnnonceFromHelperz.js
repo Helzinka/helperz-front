@@ -7,19 +7,17 @@ import {
 	ScrollView,
 	Pressable,
 	Image,
-} from "react-native"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faStar } from "@fortawesome/free-solid-svg-icons"
-import Calendar from "../components/Calendar"
+} from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Calendar from "../components/Calendar";
 
 export default function AnnonceFromHelperz({ navigation, route }) {
+	console.log(route.params, "helperz");
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.profilContainer}>
-				<Image
-					source={require("../assets/profil1.jpg")}
-					style={styles.imageCard}
-				/>
+				<Image source={require("../assets/profil1.jpg")} style={styles.imageCard} />
 				<View style={styles.profilText}>
 					<View style={styles.headerProfil}>
 						<Text style={styles.textBio}>Julie</Text>
@@ -45,38 +43,20 @@ export default function AnnonceFromHelperz({ navigation, route }) {
 			</View>
 
 			<View style={styles.tagContainer}>
-				<ScrollView
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-				>
-					<TouchableOpacity
-						style={styles.filter}
-						activeOpacity={0.8}
-					>
+				<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
 						<Text style={styles.textFilter}>Disponibilités</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.filter}
-						activeOpacity={0.8}
-					>
+					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
 						<Text style={styles.textFilter}>Localisation</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.filter}
-						activeOpacity={0.8}
-					>
+					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
 						<Text style={styles.textFilter}>Prix</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.filter}
-						activeOpacity={0.8}
-					>
+					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
 						<Text style={styles.textFilter}>Avis</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.filter}
-						activeOpacity={0.8}
-					>
+					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
 						<Text style={styles.textFilter}>Missions</Text>
 					</TouchableOpacity>
 				</ScrollView>
@@ -95,7 +75,7 @@ export default function AnnonceFromHelperz({ navigation, route }) {
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -194,4 +174,4 @@ const styles = StyleSheet.create({
 		color: "white",
 		fontWeight: "bold",
 	},
-})
+});

@@ -3,7 +3,7 @@ import MapView, { Marker } from "react-native-maps";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function PageAnnonce({ navigation, route }) {
-	console.log(route.params.announce);
+	console.log(route.params);
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.annonceContainer}>

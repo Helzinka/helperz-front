@@ -12,7 +12,7 @@ export default function Card({ data, type, navigation }) {
 				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
 				<View style={styles.content}>
 					<View style={styles.helperzName}>
-						<Text style={styles.username}>{data.username} </Text>
+						<Text style={styles.username}>{data.username}</Text>
 						<Text style={styles.lastname}> {data.lastname}</Text>
 					</View>
 					<Text style={styles.location}>Lieu : {data.helperz.location.name}</Text>
