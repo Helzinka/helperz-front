@@ -23,6 +23,7 @@ export default function CreateAnnounce({ navigation }) {
 			.then((response) => response.json())
 			.then((data) => {
 				let infos = {}
+
 				if (data) {
 					let firstCity = data.features[0]
 					infos = {
@@ -35,11 +36,10 @@ export default function CreateAnnounce({ navigation }) {
 						// userOwner : UserReducer.user.id
 						// user "Test" => 639f238251b4d699e1473f29
 						userOwner: "639f238251b4d699e1473f29",
-						location: {
-							name: firstCity.properties.city,
-							lat: firstCity.geometry.coordinates[1],
-							long: firstCity.geometry.coordinates[0],
-						},
+
+						name: firstCity.properties.city,
+						lat: firstCity.geometry.coordinates[1],
+						long: firstCity.geometry.coordinates[0],
 					}
 				}
 				return fetch(`${BASE_URL}/announces`, {
@@ -55,8 +55,6 @@ export default function CreateAnnounce({ navigation }) {
 						}
 					})
 			})
-		// only for testing
-		// navigation.navigate("Liste helperz")
 	}
 
 	return (
