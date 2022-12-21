@@ -8,13 +8,13 @@ import {
 	Pressable,
 	TouchableOpacity,
 } from "react-native";
+import { IP_LOCAL } from "@env";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Card from "../components/Card";
 import FilterModal from "../modals/Filter";
-import mongodb from "../data.json";
-// fake data mongodb
 
 export default function Annonce({ navigation }) {
+	const BASE_URL = `http://${IP_LOCAL}:3000`;
 	const [data, setData] = useState();
 	const [search, setSearch] = useState();
 	const [isModalVisible, setIsModalVisible] = useState(false);
@@ -28,16 +28,20 @@ export default function Annonce({ navigation }) {
 	const onClose = () => {
 		setIsModalVisible(!isModalVisible);
 	};
-	// recupère les données à la création du composant depuis data.json
+	// recupère les données à la création du composant depuis data.json sans filtre location
 	useEffect(() => {
-		setData(mongodb);
+		fetch(`${BASE_URL}/announces`)
+			.then((response) => response.json())
+			.then((data) => {
+				setData(data);
+			});
 	}, []);
 
 	// fonction pour retourner toutes les annonces via le composant "Card"
 	// check si les données sont présente via if(data) !important
 	const showAnnounce = () => {
 		if (data) {
-			return data.announce.map((value, index) => (
+			return data.data.map((value, index) => (
 				<Card navigation={navigation} key={index} data={value} />
 			));
 		}

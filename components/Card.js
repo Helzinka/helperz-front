@@ -23,12 +23,12 @@ export default function Card({ data, type, navigation }) {
 		return (
 			<TouchableOpacity
 				style={styles.card}
-				onPress={() => navigation.navigate("Mes annonces")}
+				onPress={() => navigation.navigate("Mes annonces", { announce: data })}
 			>
 				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
 				<View style={styles.content}>
 					<Text style={styles.title}>{data.title}</Text>
-					<Text style={styles.descritption}>{data.descritption}</Text>
+					<Text style={styles.description}>{data.description}</Text>
 				</View>
 			</TouchableOpacity>
 		);
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		color: "black",
 	},
-	descritption: {
+	description: {
 		fontSize: 12,
 		color: "black",
 	},
