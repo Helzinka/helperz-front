@@ -44,9 +44,9 @@ export default function HomeScreen({ navigation }) {
 
   const handleLogin = () => {
     if (userReducer.user.token) {
-      navigation.navigate("Créer une annonce");
+      navigation.navigate("Création annonce");
     } else {
-      navigation.navigate("Se connecter");
+      navigation.navigate("Connexion");
     }
   };
   return (
@@ -81,7 +81,7 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.card}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("Liste helperz")}
+          onPress={() => navigation.navigate("Liste des Helperz")}
         >
           <Image
             source={require("../assets/trouver.png")}
@@ -98,7 +98,7 @@ export default function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.card}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate("Liste annonces")}
+          onPress={() => navigation.navigate("Liste des annonces")}
         >
           <Image
             source={require("../assets/money.png")}
