@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import {
 	View,
 	Text,
@@ -7,45 +7,51 @@ import {
 	ScrollView,
 	Pressable,
 	TouchableOpacity,
-} from "react-native";
-import { IP_LOCAL } from "@env";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Card from "../components/Card";
-import FilterModal from "../modals/Filter";
+} from "react-native"
+import { IP_LOCAL } from "@env"
+import FontAwesome from "react-native-vector-icons/FontAwesome"
+import Card from "../components/Card"
+import FilterModal from "../modals/Filter"
+import { useIsFocused } from "@react-navigation/native"
 
 export default function Annonce({ navigation }) {
-	const BASE_URL = `http://${IP_LOCAL}:3000`;
-	const [data, setData] = useState();
-	const [search, setSearch] = useState();
-	const [isModalVisible, setIsModalVisible] = useState(false);
-
+	const BASE_URL = `http://${IP_LOCAL}:3000`
+	const [data, setData] = useState()
+	const [search, setSearch] = useState()
+	const [isModalVisible, setIsModalVisible] = useState(false)
+	const isFocused = useIsFocused()
+	console.log("render")
 	// affiche la modal au click de l'icon "+"
 	const isVisible = () => {
-		setIsModalVisible(!isModalVisible);
-	};
+		setIsModalVisible(!isModalVisible)
+	}
 
 	// ferme la modal au click dans la modal "quitter"
 	const onClose = () => {
-		setIsModalVisible(!isModalVisible);
-	};
+		setIsModalVisible(!isModalVisible)
+	}
 	// recupère les données à la création du composant depuis data.json sans filtre location
 	useEffect(() => {
 		fetch(`${BASE_URL}/announces`)
 			.then((response) => response.json())
 			.then((data) => {
-				setData(data);
-			});
-	}, []);
+				setData(data)
+			})
+	}, [isFocused])
 
 	// fonction pour retourner toutes les annonces via le composant "Card"
 	// check si les données sont présente via if(data) !important
 	const showAnnounce = () => {
 		if (data) {
 			return data.data.map((value, index) => (
-				<Card navigation={navigation} key={index} data={value} />
-			));
+				<Card
+					navigation={navigation}
+					key={index}
+					data={value}
+				/>
+			))
 		}
-	};
+	}
 	return (
 		<>
 			<View style={styles.container}>
@@ -57,9 +63,16 @@ export default function Annonce({ navigation }) {
 				></TextInput>
 				<View style={styles.filters}>
 					<TouchableOpacity onPress={() => isVisible()}>
-						<FontAwesome name="plus" size={20} style={styles.plus}></FontAwesome>
+						<FontAwesome
+							name="plus"
+							size={20}
+							style={styles.plus}
+						></FontAwesome>
 					</TouchableOpacity>
-					<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+					<ScrollView
+						horizontal={true}
+						showsHorizontalScrollIndicator={false}
+					>
 						<Pressable style={styles.filter}>
 							<Text>Paris</Text>
 						</Pressable>
@@ -71,10 +84,13 @@ export default function Annonce({ navigation }) {
 			</View>
 			<ScrollView style={styles.ScrollView}>
 				<View style={styles.announces}>{showAnnounce()}</View>
-				<FilterModal isVisible={isModalVisible} onClose={() => onClose()}></FilterModal>
+				<FilterModal
+					isVisible={isModalVisible}
+					onClose={() => onClose()}
+				></FilterModal>
 			</ScrollView>
 		</>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -120,4 +136,4 @@ const styles = StyleSheet.create({
 	ScrollView: {
 		backgroundColor: "white",
 	},
-});
+})
