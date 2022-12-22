@@ -10,7 +10,10 @@ export default function Card({ data, type, navigation }) {
 				onPress={() => navigation.navigate("Helperz", { user: data })}
 				style={styles.card}
 			>
-				<Image source={{ uri: data.avatar }} style={styles.imageCard} />
+				<Image
+					source={{ uri: data.avatar }}
+					style={styles.imageCard}
+				/>
 				<View style={styles.content}>
 					<View style={styles.helperzName}>
 						<Text style={styles.username}>{data.username}</Text>
@@ -30,10 +33,16 @@ export default function Card({ data, type, navigation }) {
 				style={styles.card}
 				onPress={() => navigation.navigate("Annonce", { id: data._id })}
 			>
-				<Image source={require("../assets/peoples-money.jpg")} style={styles.imageCard} />
+				<Image
+					source={require("../assets/peoples-money.jpg")}
+					style={styles.imageCard}
+				/>
 				<View style={styles.content}>
 					<Text style={styles.title}>{data.title}</Text>
-					<Text numberOfLines={3} style={styles.description}>
+					<Text
+						numberOfLines={3}
+						style={styles.description}
+					>
 						{description[0]}.
 					</Text>
 				</View>
@@ -58,7 +67,6 @@ const styles = StyleSheet.create({
 		marginRight: 15,
 	},
 	content: {
-		// padding: 10,
 		flex: 1,
 		flexDirection: "column",
 	},
