@@ -13,7 +13,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Card from "../components/Card";
 import FilterModal from "../modals/Filter";
 
-export default function Annonce({ navigation }) {
+export default function Annonce({ navigation, route }) {
 	const BASE_URL = `http://${IP_LOCAL}:3000`;
 	const [data, setData] = useState();
 	const [search, setSearch] = useState();
@@ -46,6 +46,7 @@ export default function Annonce({ navigation }) {
 			));
 		}
 	};
+
 	return (
 		<>
 			<View style={styles.container}>

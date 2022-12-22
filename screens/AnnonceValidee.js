@@ -10,7 +10,7 @@ export default function AnnonceRecap({ navigation, route }) {
 
 	// recupère les données à l'ouverture de la page depuis data.json sans filtre location
 	useEffect(() => {
-		fetch(`${BASE_URL}/announces/${route.params.id}`)
+		fetch(`${BASE_URL}/announces/id/${route.params.id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				let date = new Date(data.data.createdAt);

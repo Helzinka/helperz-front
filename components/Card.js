@@ -9,7 +9,7 @@ export default function Card({ data, type, navigation }) {
 				onPress={() => navigation.navigate("Helperz", { user: data })}
 				style={styles.card}
 			>
-				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
+				<Image source={require("../assets/profil3.jpg")} style={styles.imageCard} />
 				<View style={styles.content}>
 					<View style={styles.helperzName}>
 						<Text style={styles.username}>{data.username}</Text>
@@ -21,15 +21,20 @@ export default function Card({ data, type, navigation }) {
 			</TouchableOpacity>
 		);
 	} else {
+		//limiter la description des cards à un certains nombres de caractères
+		const descriptionAnnonces = data.description;
+		const description = descriptionAnnonces.split(".");
 		return (
 			<TouchableOpacity
 				style={styles.card}
 				onPress={() => navigation.navigate("Annonce", { id: data._id })}
 			>
-				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
+				<Image source={require("../assets/peoples-money.jpg")} style={styles.imageCard} />
 				<View style={styles.content}>
 					<Text style={styles.title}>{data.title}</Text>
-					<Text style={styles.description}>{data.description}</Text>
+					<Text numberOfLines={3} style={styles.description}>
+						{description[0]}.
+					</Text>
 				</View>
 			</TouchableOpacity>
 		);

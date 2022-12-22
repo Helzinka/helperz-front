@@ -1,26 +1,27 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import MapView, { Marker } from "react-native-maps"
-import { useDebugValue, useEffect, useState } from "react"
-import { IP_LOCAL } from "@env"
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import { useDebugValue, useEffect, useState } from "react";
+import { IP_LOCAL } from "@env";
 
-import FontAwesome from "react-native-vector-icons/FontAwesome"
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { clearAllListeners } from "@reduxjs/toolkit";
 
 export default function PageAnnonce({ navigation, route }) {
-	const BASE_URL = `http://${IP_LOCAL}:3000`
+	const BASE_URL = `http://${IP_LOCAL}:3000`;
 
-	const [data, setData] = useState()
+	const [data, setData] = useState();
 
 	// recupère les données à l'ouverture de la page depuis data.json sans filtre location
 	useEffect(() => {
 		fetch(`${BASE_URL}/announces/id/${route.params.id}`)
 			.then((response) => response.json())
 			.then((data) => {
-				let date = new Date(data.data.createdAt)
-				let test = date.toLocaleDateString("fr-FR")
-				data.data.createdAt = test
-				setData(data)
-			})
-	}, [])
+				let date = new Date(data.data.createdAt);
+				let test = date.toLocaleDateString("fr-FR");
+				data.data.createdAt = test;
+				setData(data);
+			});
+	}, [route]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -78,7 +79,7 @@ export default function PageAnnonce({ navigation, route }) {
 				</>
 			)}
 		</SafeAreaView>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -159,4 +160,4 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 	},
-})
+});
