@@ -9,16 +9,16 @@ export default function AnnonceRecap({ navigation, route }) {
 	const [data, setData] = useState();
 
 	// recupère les données à l'ouverture de la page depuis data.json sans filtre location
-	// useEffect(() => {
-	//   fetch(`${BASE_URL}/announces/${route.params.id}`)
-	//     .then((response) => response.json())
-	//     .then((data) => {
-	//       let date = new Date(data.data.createdAt);
-	//       let test = date.toLocaleDateString("fr-FR");
-	//       data.data.createdAt = test;
-	//       setData(data);
-	//     });
-	// }, []);
+	useEffect(() => {
+		fetch(`${BASE_URL}/announces/${route.params.id}`)
+			.then((response) => response.json())
+			.then((data) => {
+				let date = new Date(data.data.createdAt);
+				let test = date.toLocaleDateString("fr-FR");
+				data.data.createdAt = test;
+				setData(data);
+			});
+	}, []);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -31,10 +31,10 @@ export default function AnnonceRecap({ navigation, route }) {
 						</View>
 					</View>
 
-					{/* <View style={styles.recapMission}>
+					<View style={styles.recapMission}>
 						<Text style={styles.titreAnnonce}>{data.data.title}</Text>
 						<Text style={styles.textAnnonce}>{data.data.description}</Text>
-					</View> */}
+					</View>
 
 					<View style={styles.profilContainer}>
 						<View style={styles.photo}>
@@ -42,19 +42,19 @@ export default function AnnonceRecap({ navigation, route }) {
 								<FontAwesome name="user" size={50} color={"white"} />
 							</TouchableOpacity>
 						</View>
-						{/* <View style={styles.profil}>
+						<View style={styles.profil}>
 							<Text style={styles.nomHelperz}>{data.data.userOwner.username}</Text>
-						</View> */}
+						</View>
 					</View>
 
-					{/* <View style={styles.buttonContainer}>
+					<View style={styles.buttonContainer}>
 						<View style={styles.price}>
 							<Text style={styles.text}>{data.data.price}€</Text>
 						</View>
 						<View style={styles.calendar}>
 							<Text style={styles.text}>{data.data.createdAt}</Text>
 						</View>
-					</View> */}
+					</View>
 				</>
 			)}
 		</SafeAreaView>

@@ -11,72 +11,72 @@ export default function PageAnnonce({ navigation, route }) {
 	const [data, setData] = useState();
 
 	// recupère les données à l'ouverture de la page depuis data.json sans filtre location
-	// useEffect(() => {
-	//   fetch(`${BASE_URL}/announces/${route.params.id}`)
-	//     .then((response) => response.json())
-	//     .then((data) => {
-	//       let date = new Date(data.data.createdAt);
-	//       let test = date.toLocaleDateString("fr-FR");
-	//       data.data.createdAt = test;
-	//       setData(data);
-	//     });
-	// }, []);
+	useEffect(() => {
+		fetch(`${BASE_URL}/announces/${route.params.id}`)
+			.then((response) => response.json())
+			.then((data) => {
+				let date = new Date(data.data.createdAt);
+				let test = date.toLocaleDateString("fr-FR");
+				data.data.createdAt = test;
+				setData(data);
+			});
+	}, []);
 
 	return (
 		<SafeAreaView style={styles.container}>
-			{/* {data && (
-        <>
-          <View style={styles.annonceContainer}>
-            <Text style={styles.titreAnnonce}>{data.data.title}</Text>
-            <Text style={styles.textAnnonce}>{data.data.description}</Text>
-          </View>
+			{data && (
+				<>
+					<View style={styles.annonceContainer}>
+						<Text style={styles.titreAnnonce}>{data.data.title}</Text>
+						<Text style={styles.textAnnonce}>{data.data.description}</Text>
+					</View>
 
-          <MapView
-            region={{
-              latitude: data.data.location.lat,
-              longitude: data.data.location.long,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-            style={styles.mapView}
-          >
-            <Marker
-              pinColor="red"
-              coordinate={{
-                latitude: data.data.location.lat,
-                longitude: data.data.location.long,
-              }}
-              title={data.data.title}
-            ></Marker>
-          </MapView>
+					<MapView
+						region={{
+							latitude: data.data.location.lat,
+							longitude: data.data.location.long,
+							latitudeDelta: 0.0922,
+							longitudeDelta: 0.0421,
+						}}
+						style={styles.mapView}
+					>
+						<Marker
+							pinColor="red"
+							coordinate={{
+								latitude: data.data.location.lat,
+								longitude: data.data.location.long,
+							}}
+							title={data.data.title}
+						></Marker>
+					</MapView>
 
-          <View style={styles.priceDateContainer}>
-            <View style={styles.price}>
-              <Text style={styles.text}>{data.data.price}€</Text>
-            </View>
-            <View style={styles.calendar}>
-              <Text style={styles.text}>{data.data.createdAt}</Text>
-            </View>
-          </View>
+					<View style={styles.priceDateContainer}>
+						<View style={styles.price}>
+							<Text style={styles.text}>{data.data.price}€</Text>
+						</View>
+						<View style={styles.calendar}>
+							<Text style={styles.text}>{data.data.createdAt}</Text>
+						</View>
+					</View>
 
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Annonces validées", { id: data.data._id })
-              }
-              style={styles.buttonValidate}
-            >
-              <Text style={styles.textValidate}>Accepter</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonContact}
-              onPress={() => navigation.navigate("Messagerie")}
-            >
-              <Text style={styles.textValidate}>Contacter</Text>
-            </TouchableOpacity>
-          </View>
-        </> */}
-			{/* )} */}
+					<View style={styles.buttonContainer}>
+						<TouchableOpacity
+							onPress={() =>
+								navigation.navigate("Annonces validées", { id: data.data._id })
+							}
+							style={styles.buttonValidate}
+						>
+							<Text style={styles.textValidate}>Accepter</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.buttonContact}
+							onPress={() => navigation.navigate("Messagerie")}
+						>
+							<Text style={styles.textValidate}>Contacter</Text>
+						</TouchableOpacity>
+					</View>
+				</>
+			)}
 		</SafeAreaView>
 	);
 }
