@@ -35,6 +35,8 @@ export default function Annonce({ navigation }) {
     setIsModalVisible(!isModalVisible);
   };
   useEffect(() => {
+    const test = "ok";
+
     if (UserReducer.user.token) {
       // on récupère la dernière annnonce depuis le reducer user
       let last = UserReducer.announces.length - 1;
