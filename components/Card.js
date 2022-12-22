@@ -1,15 +1,19 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native"
 
 // accès à props "data" directement grace à la destructuration
 // si type == "helperz" affiche la card helperz, sinon Annonces
 export default function Card({ data, type, navigation }) {
+	console.log(data)
 	if (type === "helperz") {
 		return (
 			<TouchableOpacity
 				onPress={() => navigation.navigate("Helperz", { user: data })}
 				style={styles.card}
 			>
-				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
+				<Image
+					source={{ uri: data.avatar }}
+					style={styles.imageCard}
+				/>
 				<View style={styles.content}>
 					<View style={styles.helperzName}>
 						<Text style={styles.username}>{data.username}</Text>
@@ -19,20 +23,23 @@ export default function Card({ data, type, navigation }) {
 					<Text style={styles.location}>Avis: {data.helperz.review}</Text>
 				</View>
 			</TouchableOpacity>
-		);
+		)
 	} else {
 		return (
 			<TouchableOpacity
 				style={styles.card}
 				onPress={() => navigation.navigate("Annonce", { id: data._id })}
 			>
-				<Image source={require("../assets/profil2.jpg")} style={styles.imageCard} />
+				<Image
+					source={require("../assets/profil2.jpg")}
+					style={styles.imageCard}
+				/>
 				<View style={styles.content}>
 					<Text style={styles.title}>{data.title}</Text>
 					<Text style={styles.description}>{data.description}</Text>
 				</View>
 			</TouchableOpacity>
-		);
+		)
 	}
 }
 
@@ -78,4 +85,4 @@ const styles = StyleSheet.create({
 		color: "black",
 	},
 	location: {},
-});
+})
