@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "Test@test.com",
+        email: "jim@ok.com",
         password: "toto",
       }),
     })
@@ -105,7 +105,7 @@ export default function HomeScreen({ navigation }) {
             style={styles.imageCard}
           />
           <View style={styles.textCard}>
-            <Text style={styles.titreCard}>Faites vous rémunérer</Text>
+            <Text style={styles.titreCard}>Découvrire les missions</Text>
             <Text style={styles.textContent}>
               Gagnez de l'argent dès que vous réalisez une mission
             </Text>
