@@ -1,196 +1,180 @@
-import { useEffect, useState } from "react";
 import {
+  SafeAreaView,
   View,
   Text,
-  TextInput,
   StyleSheet,
+  TouchableOpacity,
   ScrollView,
   Pressable,
-  TouchableOpacity,
+  Image,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Card from "../components/Card";
-import FilterModal from "../modals/Filter";
-import mongodb from "../data.json";
-// fake data mongodb
-import { IP_LOCAL } from "@env";
-import MapView, { Marker } from "react-native-maps";
-import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Calendar from "../components/Calendar";
 
-export default function Annonce({ navigation }) {
-  const BASE_URL = `http://${IP_LOCAL}:3000`;
-  const [data, setData] = useState();
-  const [initLocation, setInitLocation] = useState({});
-  const [search, setSearch] = useState();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const UserReducer = useSelector((state) => state.user.value);
-
-  // affiche la modal au click de l'icon "+"
-  const isVisible = () => {
-    setIsModalVisible(!isModalVisible);
-  };
-
-  // ferme la modal au click dans la modal "quitter"
-  const onClose = () => {
-    setIsModalVisible(!isModalVisible);
-  };
-  useEffect(() => {
-    if (UserReducer.user.token) {
-      // on récupère la dernière annnonce depuis le reducer user
-      let last = UserReducer.announces.length - 1;
-      setInitLocation({
-        lat: UserReducer.announces[last].location.lat,
-        long: UserReducer.announces[last].location.long,
-      });
-      const announceLocation = UserReducer.announces[last].location.name;
-      // on précise le lieu de l'annonce et on fetch tout les helperz sur la meme ville
-      fetch(`${BASE_URL}/users/helperz/${announceLocation}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data);
-        });
-    }
-  }, []);
-
-  // fonction pour retourner toutes les helperz via le composant "Card"
-  // check si les données sont présente via if(data) !important
-  const showAnnounce = () => {
-    if (data) {
-      return data.user.map((value, index) => (
-        <Card navigation={navigation} key={index} data={value} type="helperz" />
-      ));
-    }
-  };
-  const showFitlerAnnonce = () => {
-    if (data) {
-      let last = UserReducer.announces.length - 1;
-      const announceLocation = UserReducer.announces[last].location.name;
-      return UserReducer.announces[last].tag.map((e, i) => {
-        return (
-          <View key={i} style={styles.filter}>
-            <Text key={i}>{e}</Text>
-          </View>
-        );
-      });
-    }
-  };
-  const showmarker = () => {
-    if (data) {
-      return data.user.map((value, index) => {
-        const [lat, long] = [
-          value.helperz.location.lat,
-          value.helperz.location.long,
-        ];
-        return (
-          <Marker
-            key={index}
-            pinColor="red"
-            coordinate={{ latitude: lat, longitude: long }}
-            title={value.username}
-            onPress={() =>
-              navigation.navigate("Helperz", { user: value.token })
-            }
-          ></Marker>
-        );
-      });
-    }
-  };
+export default function AnnonceFromHelperz({ navigation, route }) {
+  const way = route.params.user;
+  const location = way.helperz.location;
 
   return (
-    <>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.search}
-          onChangeText={setSearch}
-          value={search}
-          placeholder="Location"
-        ></TextInput>
-        <View style={styles.filters}>
-          <TouchableOpacity onPress={() => isVisible()}>
-            <FontAwesome
-              name="plus"
-              size={20}
-              style={styles.plus}
-            ></FontAwesome>
-          </TouchableOpacity>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {showFitlerAnnonce()}
-          </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.profilContainer}>
+        <Image
+          source={require("../assets/profil1.jpg")}
+          style={styles.imageCard}
+        />
+        <View style={styles.profilText}>
+          <View style={styles.headerProfil}>
+            <Text style={styles.textBio}>{way.username}</Text>
+            <Text style={styles.textBio}>{way.lastname}</Text>
+            <Text style={styles.textBio}>-</Text>
+            <Text style={styles.textBio}>{location.name}</Text>
+          </View>
+          <View style={styles.notationContainer}>
+            <Text style={styles.notation}>
+              Notes: {way.helperz.review} (
+              <FontAwesomeIcon
+                icon={faStar}
+                size={12}
+                color="#FFD700"
+              ></FontAwesomeIcon>
+              )
+            </Text>
+          </View>
+          <Text style={styles.descriptionText}>"{way.description}"</Text>
         </View>
       </View>
-      {initLocation && (
-        <MapView
-          region={{
-            latitude: initLocation.lat,
-            longitude: initLocation.long,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          style={styles.mapView}
-        >
-          {showmarker()}
-        </MapView>
-      )}
 
-      <ScrollView style={styles.ScrollView}>
-        <View style={styles.announces}>{showAnnounce()}</View>
-        <FilterModal
-          isVisible={isModalVisible}
-          onClose={() => onClose()}
-        ></FilterModal>
-      </ScrollView>
-    </>
+      <View style={styles.tagContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+            <Text style={styles.textFilter}>Disponibilités</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+            <Text style={styles.textFilter}>Localisation</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+            <Text style={styles.textFilter}>Prix</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+            <Text style={styles.textFilter}>Avis</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+            <Text style={styles.textFilter}>Missions</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
+
+      <View style={styles.calendarContainer}>
+        <Calendar />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonValidate}
+          onPress={() => navigation.navigate("Messagerie")}
+        >
+          <Text style={styles.textValidate}>Contacter</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "white",
   },
-  search: {
-    alignSelf: "center",
-    width: "85%",
-    padding: 10,
-    margin: 10,
-    borderRadius: 10,
-    backgroundColor: "white",
-    borderRadius: 10,
-    borderColor: "#00C6A0",
-    borderWidth: 3,
-  },
-  filters: {
-    margin: 15,
+  profilContainer: {
+    flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    justifyContent: "space-around",
   },
-  filter: {
-    backgroundColor: "#00C6A0",
-    borderRadius: 8,
-    paddingRight: 8,
-    paddingLeft: 8,
-    paddingTop: 4,
-    paddingBottom: 4,
-    marginRight: 8,
-  },
-  plus: {
-    marginLeft: 10,
-    marginRight: 20,
-  },
-  ScrollView: {
-    flex: 1.5,
-    backgroundColor: "white",
+  profilText: {
     flexDirection: "column",
+    justifyContent: "space-around",
+    width: "65%",
+    padding: 15,
   },
-  announces: {
-    flexDirection: "column",
+  headerProfil: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    margin: 5,
+  },
+  textBio: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  notationContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+  },
+  notation: {
+    fontSize: 16,
+  },
+  descriptionText: {
+    fontSize: 13,
+    margin: 5,
+    fontStyle: "italic",
+  },
+  photoContainer: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "white",
   },
-  mapView: {
+  imageCard: {
+    width: "27%",
+    height: "75%",
+    borderRadius: 100,
+    marginLeft: 9,
+  },
+  textFilter: {
+    fontSize: 12,
+  },
+  tagContainer: {
+    flex: 0.3,
+    fontSize: 12,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  filter: {
+    width: "30%",
+    height: "80%",
+    backgroundColor: "#00C6A0",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    margin: 4,
+  },
+  calendarContainer: {
+    flex: 2.5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonContainer: {
     flex: 1,
-    height: "100%",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  buttonValidate: {
+    backgroundColor: "#006EFF",
+    borderRadius: 15,
+    width: "90%",
+    height: "25%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textValidate: {
+    fontSize: 14,
+    color: "white",
+    fontWeight: "bold",
   },
 });

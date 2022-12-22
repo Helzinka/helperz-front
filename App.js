@@ -15,9 +15,9 @@ import CreationAnnonce from "./screens/CreationAnnonce";
 import MonProfil from "./screens/MonProfil";
 import Annonce from "./screens/Annonce";
 import ListeAnnonce from "./screens/ListeAnnonce";
-import ListeHelperz from "./screens/ListeHelperz";
-import BoiteReception from "./screens/BoiteReception";
 import Helperz from "./screens/Helperz";
+import BoiteReception from "./screens/BoiteReception";
+import ListeHelperz from "./screens/ListeHelperz";
 import PagePaiement from "./screens/PagePaiement";
 import Messagerie from "./screens/Messagerie";
 
@@ -51,9 +51,9 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="Annonces validées" component={AnnonceValidee} />
       <Drawer.Screen name="Annonce" component={Annonce} />
       <Drawer.Screen name="Liste des annonces" component={ListeAnnonce} />
-      <Drawer.Screen name="Liste des Helperz" component={ListeHelperz} />
-      <Drawer.Screen name="Boite de réception" component={BoiteReception} />
       <Drawer.Screen name="Helperz" component={Helperz} />
+      <Drawer.Screen name="Boite de réception" component={BoiteReception} />
+      <Drawer.Screen name="Liste des Helperz" component={ListeHelperz} />
       <Drawer.Screen name="Page de paiement" component={PagePaiement} />
       <Drawer.Screen name="Messagerie" component={Messagerie} />
     </Drawer.Navigator>
