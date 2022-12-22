@@ -1,9 +1,7 @@
 import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import MapView, { Marker } from "react-native-maps"
-import { useDebugValue, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { IP_LOCAL } from "@env"
-
-import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 export default function PageAnnonce({ navigation, route }) {
 	const BASE_URL = `http://${IP_LOCAL}:3000`
@@ -20,7 +18,7 @@ export default function PageAnnonce({ navigation, route }) {
 				data.data.createdAt = test
 				setData(data)
 			})
-	}, [])
+	}, [route])
 
 	return (
 		<SafeAreaView style={styles.container}>
