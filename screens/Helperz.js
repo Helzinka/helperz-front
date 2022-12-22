@@ -5,9 +5,7 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	ScrollView,
-	Pressable,
 	Image,
-	FlatList,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -28,7 +26,10 @@ export default function AnnonceFromHelperz({ navigation, route }) {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.profilContainer}>
-				<Image source={require("../assets/profil3.jpg")} style={styles.imageCard} />
+				<Image
+					source={{ uri: way.avatar }}
+					style={styles.imageCard}
+				/>
 				<View style={styles.profilText}>
 					<View style={styles.headerProfil}>
 						<Text style={styles.textBio}>{way.username}</Text>
@@ -52,25 +53,32 @@ export default function AnnonceFromHelperz({ navigation, route }) {
 			</View>
 
 			<View style={styles.tagContainer}>
-				<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+				<ScrollView
+					horizontal={true}
+					showsHorizontalScrollIndicator={false}
+				>
+					<TouchableOpacity
+						style={styles.filter}
+						activeOpacity={0.8}
+					>
 						<Text style={styles.textFilter}>{disponibilite()}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
+					<TouchableOpacity
+						style={styles.filter}
+						activeOpacity={0.8}
+					>
 						<Text style={styles.textFilter}>{location.name}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-						<Text style={styles.textFilter}>{tags[0]}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-						<Text style={styles.textFilter}>{tags[1]}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-						<Text style={styles.textFilter}>{tags[2]}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.filter} activeOpacity={0.8}>
-						<Text style={styles.textFilter}>{tags[3]}</Text>
-					</TouchableOpacity>
+					{tags.map((e) => {
+						return (
+							<TouchableOpacity
+								style={styles.filter}
+								activeOpacity={0.8}
+							>
+								<Text style={styles.textFilter}>{e}</Text>
+							</TouchableOpacity>
+						);
+					})}
 				</ScrollView>
 			</View>
 

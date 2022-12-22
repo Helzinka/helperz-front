@@ -36,16 +36,30 @@ export default function AnnonceRecap({ navigation, route }) {
 						<Text style={styles.textAnnonce}>{data.data.description}</Text>
 					</View>
 
-					<View style={styles.profilContainer}>
+					<TouchableOpacity
+						style={styles.profilContainer}
+						onPress={() => navigation.navigate("Messagerie")}
+					>
 						<View style={styles.photo}>
-							<TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
-								<FontAwesome name="user" size={50} color={"white"} />
-							</TouchableOpacity>
+							<View
+								style={styles.avatar}
+								activeOpacity={0.8}
+							>
+								<FontAwesome
+									name="user"
+									size={50}
+									color={"white"}
+								/>
+							</View>
 						</View>
 						<View style={styles.profil}>
-							<Text style={styles.nomHelperz}>{data.data.userOwner.username}</Text>
+							<Text style={styles.nomHelperz}>Profile</Text>
+							<Text>
+								{data.data.userOwner.username + " " + data.data.userOwner.lastname}
+							</Text>
+							<Text>{data.data.userOwner.helperz.location.name} </Text>
 						</View>
-					</View>
+					</TouchableOpacity>
 
 					<View style={styles.buttonContainer}>
 						<View style={styles.price}>

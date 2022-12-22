@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 // accès à props "data" directement grace à la destructuration
 // si type == "helperz" affiche la card helperz, sinon Annonces
 export default function Card({ data, type, navigation }) {
-	console.log(data);
 	if (type === "helperz") {
 		return (
 			<TouchableOpacity
