@@ -1,24 +1,24 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useEffect, useState } from "react";
-import { IP_LOCAL } from "@env";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { useEffect, useState } from "react"
+import { IP_LOCAL } from "@env"
+import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 export default function AnnonceRecap({ navigation, route }) {
-	const BASE_URL = `http://${IP_LOCAL}:3000`;
+	const BASE_URL = `http://${IP_LOCAL}:3000`
 
-	const [data, setData] = useState();
+	const [data, setData] = useState()
 
 	// recupère les données à l'ouverture de la page depuis data.json sans filtre location
 	useEffect(() => {
-		fetch(`${BASE_URL}/announces/${route.params.id}`)
+		fetch(`${BASE_URL}/announces/id/${route.params.id}`)
 			.then((response) => response.json())
 			.then((data) => {
-				let date = new Date(data.data.createdAt);
-				let test = date.toLocaleDateString("fr-FR");
-				data.data.createdAt = test;
-				setData(data);
-			});
-	}, []);
+				let date = new Date(data.data.createdAt)
+				let test = date.toLocaleDateString("fr-FR")
+				data.data.createdAt = test
+				setData(data)
+			})
+	}, [route])
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -38,8 +38,15 @@ export default function AnnonceRecap({ navigation, route }) {
 
 					<View style={styles.profilContainer}>
 						<View style={styles.photo}>
-							<TouchableOpacity style={styles.avatar} activeOpacity={0.8}>
-								<FontAwesome name="user" size={50} color={"white"} />
+							<TouchableOpacity
+								style={styles.avatar}
+								activeOpacity={0.8}
+							>
+								<FontAwesome
+									name="user"
+									size={50}
+									color={"white"}
+								/>
 							</TouchableOpacity>
 						</View>
 						<View style={styles.profil}>
@@ -58,7 +65,7 @@ export default function AnnonceRecap({ navigation, route }) {
 				</>
 			)}
 		</SafeAreaView>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -163,4 +170,4 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		color: "white",
 	},
-});
+})
