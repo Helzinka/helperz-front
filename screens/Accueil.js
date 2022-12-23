@@ -10,30 +10,30 @@ export default function HomeScreen({ navigation }) {
 	const BASE_URL = `http://${IP_LOCAL}:3000`;
 
 	// auto log with test user
-	useEffect(() => {
-		fetch(`${BASE_URL}/users/signin`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: "jim@ok.com",
-				password: "toto",
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.result) {
-					dispatch(sign(data.user));
-					const userToken = data.user.token;
-					return fetch(`${BASE_URL}/users/announces/${userToken}`)
-						.then((response) => response.json())
-						.then((data) => {
-							if (data.result) {
-								dispatch(addAllAnnounces(data.announces));
-							}
-						});
-				}
-			});
-	}, []);
+	// useEffect(() => {
+	// 	fetch(`${BASE_URL}/users/signin`, {
+	// 		method: "POST",
+	// 		headers: { "Content-Type": "application/json" },
+	// 		body: JSON.stringify({
+	// 			email: "jim@ok.com",
+	// 			password: "toto",
+	// 		}),
+	// 	})
+	// 		.then((response) => response.json())
+	// 		.then((data) => {
+	// 			if (data.result) {
+	// 				dispatch(sign(data.user));
+	// 				const userToken = data.user.token;
+	// 				return fetch(`${BASE_URL}/users/announces/${userToken}`)
+	// 					.then((response) => response.json())
+	// 					.then((data) => {
+	// 						if (data.result) {
+	// 							dispatch(addAllAnnounces(data.announces));
+	// 						}
+	// 					});
+	// 			}
+	// 		});
+	// }, []);
 
 	const handleLogin = () => {
 		if (userReducer.user.token) {
@@ -44,7 +44,10 @@ export default function HomeScreen({ navigation }) {
 	};
 	return (
 		<SafeAreaView style={styles.container}>
-			<Image source={require("../assets/Carrousel.jpg")} style={styles.carrousel} />
+			<Image
+				source={require("../assets/Carrousel.jpg")}
+				style={styles.carrousel}
+			/>
 			<View style={styles.content}>
 				<TouchableOpacity
 					style={styles.card}
@@ -56,7 +59,10 @@ export default function HomeScreen({ navigation }) {
             size={50}
             color={"red"}
           ></FontAwesomeIcon> */}
-					<Image source={require("../assets/annonce.png")} style={styles.imageCard} />
+					<Image
+						source={require("../assets/annonce.png")}
+						style={styles.imageCard}
+					/>
 					<View style={styles.textCard}>
 						<Text style={styles.titreCard}>Créez une annonce</Text>
 						<Text style={styles.textContent}>
@@ -70,7 +76,10 @@ export default function HomeScreen({ navigation }) {
 					activeOpacity={0.8}
 					onPress={() => navigation.navigate("Liste des Helperz")}
 				>
-					<Image source={require("../assets/trouver.png")} style={styles.imageCard} />
+					<Image
+						source={require("../assets/trouver.png")}
+						style={styles.imageCard}
+					/>
 					<View style={styles.textCard}>
 						<Text style={styles.titreCard}>Trouvez un Helperz</Text>
 						<Text style={styles.textContent}>
@@ -84,9 +93,12 @@ export default function HomeScreen({ navigation }) {
 					activeOpacity={0.8}
 					onPress={() => navigation.navigate("Liste des annonces")}
 				>
-					<Image source={require("../assets/money.png")} style={styles.imageCard} />
+					<Image
+						source={require("../assets/money.png")}
+						style={styles.imageCard}
+					/>
 					<View style={styles.textCard}>
-						<Text style={styles.titreCard}>Faites vous rémunérer</Text>
+						<Text style={styles.titreCard}>Découvrir les missions</Text>
 						<Text style={styles.textContent}>
 							Gagnez de l'argent dès que vous réalisez une mission
 						</Text>
@@ -149,7 +161,7 @@ const styles = StyleSheet.create({
 	},
 	titreCard: {
 		fontWeight: "bold",
-		fontSize: 22,
+		fontSize: 20,
 		color: "white",
 	},
 	textContent: {

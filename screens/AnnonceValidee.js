@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { IP_LOCAL } from "@env";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -41,16 +41,10 @@ export default function AnnonceRecap({ navigation, route }) {
 						onPress={() => navigation.navigate("Messagerie")}
 					>
 						<View style={styles.photo}>
-							<View
+							<Image
 								style={styles.avatar}
-								activeOpacity={0.8}
-							>
-								<FontAwesome
-									name="user"
-									size={50}
-									color={"white"}
-								/>
-							</View>
+								source={{ uri: data.data.userOwner.avatar }}
+							></Image>
 						</View>
 						<View style={styles.profil}>
 							<Text style={styles.nomHelperz}>Profile</Text>
@@ -132,10 +126,6 @@ const styles = StyleSheet.create({
 		width: 100,
 		height: 100,
 		borderRadius: 90,
-		borderWidth: 3,
-		borderColor: "#006EFF",
-		backgroundColor: "#006EFF",
-		justifyContent: "space-evenly",
 		alignItems: "center",
 	},
 	profil: {
