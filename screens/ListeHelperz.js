@@ -34,6 +34,7 @@ export default function Annonce({ navigation }) {
 	const onClose = () => {
 		setIsModalVisible(!isModalVisible);
 	};
+
 	useEffect(() => {
 		if (UserReducer.user.token) {
 			// on récupère la dernière annnonce depuis le reducer user
@@ -92,7 +93,7 @@ export default function Annonce({ navigation }) {
 						pinColor="red"
 						coordinate={{ latitude: lat, longitude: long }}
 						title={value.username}
-						onPress={() => navigation.navigate("Helperz", { user: value.token })}
+						onPress={() => navigation.navigate("Helperz", { user: value })}
 					></Marker>
 				);
 			});

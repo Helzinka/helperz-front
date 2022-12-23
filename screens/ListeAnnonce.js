@@ -20,7 +20,6 @@ export default function Annonce({ navigation }) {
 	const [search, setSearch] = useState();
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const isFocused = useIsFocused();
-	console.log("render");
 	// affiche la modal au click de l'icon "+"
 	const isVisible = () => {
 		setIsModalVisible(!isModalVisible);
@@ -44,7 +43,11 @@ export default function Annonce({ navigation }) {
 	const showAnnounce = () => {
 		if (data) {
 			return data.data.map((value, index) => (
-				<Card navigation={navigation} key={index} data={value} />
+				<Card
+					navigation={navigation}
+					key={index}
+					data={value}
+				/>
 			));
 		}
 	};
@@ -59,9 +62,16 @@ export default function Annonce({ navigation }) {
 				></TextInput>
 				<View style={styles.filters}>
 					<TouchableOpacity onPress={() => isVisible()}>
-						<FontAwesome name="plus" size={20} style={styles.plus}></FontAwesome>
+						<FontAwesome
+							name="plus"
+							size={20}
+							style={styles.plus}
+						></FontAwesome>
 					</TouchableOpacity>
-					<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+					<ScrollView
+						horizontal={true}
+						showsHorizontalScrollIndicator={false}
+					>
 						<Pressable style={styles.filter}>
 							<Text>Paris</Text>
 						</Pressable>
@@ -73,7 +83,10 @@ export default function Annonce({ navigation }) {
 			</View>
 			<ScrollView style={styles.ScrollView}>
 				<View style={styles.announces}>{showAnnounce()}</View>
-				<FilterModal isVisible={isModalVisible} onClose={() => onClose()}></FilterModal>
+				<FilterModal
+					isVisible={isModalVisible}
+					onClose={() => onClose()}
+				></FilterModal>
 			</ScrollView>
 		</>
 	);
